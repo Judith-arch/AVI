@@ -1,19 +1,18 @@
-import { Link } from "react-router-dom"
-import './Head.css'
+import { Link } from "react-router-dom";
+import "./Head.css";
 
-function Head() {
+export default function Head() {
     return (
         <header className="header">
-            <h1 className="title">Bienvenidos</h1>
+        <nav className="nav">
+            <h2 className="logo">Mi Web</h2>
 
-            <nav>
-                <ul className="link-list">
-                    <li><Link className="link" to="/">Home</Link></li>
-                    <li><Link className="link" to="/blog">Nosotros</Link></li>
-                </ul>
-            </nav>
+            <ul className="nav-links">
+            <li><Link to="/">Inicio</Link></li>
+            <li><Link to="/productos">Productos</Link></li>
+            <li><Link to="/nosotros">Nosotros</Link></li>
+            </ul>
+        </nav>
         </header>
-    )
+    );
 }
-
-export default Head

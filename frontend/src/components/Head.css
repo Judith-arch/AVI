@@ -1,28 +1,31 @@
 .header {
-    background-color: rgb(0, 0, 2);
-    color: white;
-    padding: 10px;
+    background-color: #222;
+    padding: 15px 20px;
 }
 
-.title {
-    text-align: center;
-}
-
-.link-list {
+.nav {
     display: flex;
-    justify-content: space-around;
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0 0;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.link {
+.logo {
+    color: white;
+    margin: 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
     color: white;
     text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
+    font-weight: 500;
 }
 
-.link:hover {
+.nav-links li a:hover {
     text-decoration: underline;
 }
