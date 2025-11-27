@@ -5,6 +5,7 @@ import Head from './components/Head'
 import Inicio from './pages/Inicio'
 import Productos from './pages/Productos'
 import Register from './pages/Register'
+import Map from './pages/Map'
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Route path="/" element={<Inicio />} />
       <Route path="/register" element={<Register />} />
       <Route path="/productos" element={<Productos />} />
-      <Route path="/inicio" element={<Inicio />} />
+      <Route path="/map" element={<Map />} />
     </Routes>
     </>
   )

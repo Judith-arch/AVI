@@ -10,7 +10,8 @@ export default function Head() {
             <ul className="nav-links">
             <li><Link to="/">Inicio</Link></li>
             <li><Link to="/productos">Productos</Link></li>
-            <li><Link to="/nosotros">Nosotros</Link></li>
+            <li><Link to="/register">Register</Link></li>
+            <li><Link to="/map">Mapa</Link></li>
             </ul>
         </nav>
         </header>

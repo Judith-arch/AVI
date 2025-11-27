@@ -1,0 +1,164 @@
+/* ---- CARD GENERAL ---- */
+.shop-card {
+    width: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    margin-bottom: 25px;
+}
+
+.shop-card-top {
+    display: flex;
+    align-items: flex;
+    gap: 25px;
+}
+
+/* ---- IZQUIERDA: LOGO ---- */
+.shop-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shop-logo {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+}
+
+/* ---- CENTRO ---- */
+.shop-center {
+    flex: 1;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+}
+
+.shop-name {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.shop-description {
+    margin: 8px 0 20px;
+    color: #555;
+    font-size: 15px;
+}
+
+/* RATING + BOTÓN */
+.shop-bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.shop-rating {
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.shop-button {
+    padding: 10px 20px;
+    background: #0078ff;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.shop-button:hover {
+    background: #0062d3;
+}
+
+/* ---- DERECHA ---- */
+.shop-right {
+    min-width: 200px;
+}
+
+/* CUADRO DE DETALLES */
+.shop-details { 
+    background: #f4f4f4;
+    padding: 9px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.shop-details p {
+    margin: 5px 0;
+}
+
+/* TAGS */
+.shop-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: #e8f1ff;
+    color: #0078ff;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .shop-card-top {
+        flex-direction: column;
+    }
+
+    .shop-center {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 20px;
+    }
+
+    .shop-right {
+        width: 100%;
+    }
+}
+
+/* ===== CONTENEDOR DEL MAPA ===== */
+.map-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 700px;
+
+    /* para centrar */
+    margin: 0 auto;
+
+    /* estético */
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ddd;
+
+    /* que se coloque debajo correctamente */
+    display: block;
+
+    /* Evita que flexbox de un padre lo reduzca */
+    flex-shrink: 0;
+}
+
+/* ===== IFRAME ===== */
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .map-container {
+        height: 350px;
+    }
+}
