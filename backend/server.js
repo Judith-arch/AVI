@@ -12,9 +12,9 @@ app.use(cors());
 app.use(express.json());
 
 // 🔌 Conexión a MySQL y creación de base de datos si no existe
-const DB_NAME = process.env.DB_NAME || "mitienda";
+const DB_NAME = process.env.DB_NAME || "AVI";
 const DB_USER = process.env.DB_USER || "root";
-const DB_PASSWORD = process.env.DB_PASSWORD || "";
+const DB_PASSWORD = process.env.DB_PASSWORD || "55cf58e7G&";
 const DB_HOST = process.env.DB_HOST || "localhost";
 
 let db;
