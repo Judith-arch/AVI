@@ -1,164 +1,311 @@
-/* ---- CARD GENERAL ---- */
-.shop-card {
-    width: 100%;
-    background: white;
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-    margin-bottom: 25px;
+/* ============================= */
+/*       DISEÑO GENERAL          */
+/* ============================= */
+
+.map-page {
+  padding: 20px;
+  max-width: 1300px;
+  margin: auto;
 }
 
-.shop-card-top {
-    display: flex;
-    align-items: flex;
-    gap: 25px;
+.map-title {
+  font-size: 32px;
+  font-weight: 700;
 }
 
-/* ---- IZQUIERDA: LOGO ---- */
-.shop-left {
+.map-subtitle {
+  margin-top: -5px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #555;
+}
+
+/* CONTENEDOR A LA DERECHA DEL LOGO */
+.store-left-info {
     display: flex;
+    flex-direction: column;      /* rating encima, botón debajo */
     justify-content: center;
-    align-items: center;
+    gap: 10px;
 }
 
-.shop-logo {
-    width: 85px;
-    height: 85px;
-    object-fit: contain;
-}
-
-/* ---- CENTRO ---- */
-.shop-center {
-    flex: 1;
-    border-right: 1px solid #ddd;
-    padding-right: 20px;
-}
-
-.shop-name {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.shop-description {
-    margin: 8px 0 20px;
-    color: #555;
-    font-size: 15px;
-}
-
-/* RATING + BOTÓN */
-.shop-bottom-left {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.shop-rating {
+.store-rating-inline {
     font-size: 18px;
     font-weight: 600;
+    margin: 0;
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.shop-button {
-    padding: 10px 20px;
-    background: #0078ff;
-    color: white;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.2s;
+/* ============================= */
+/*             MAPA              */
+/* ============================= */
+
+.map-container {
+  width: 100%;
+  height: 700px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 30px;
 }
 
-.shop-button:hover {
-    background: #0062d3;
+/* ============================= */
+/*        TARJETAS TIENDAS       */
+/* ============================= */
+
+.stores-list {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
 }
 
-/* ---- DERECHA ---- */
-.shop-right {
-    min-width: 200px;
-}
-
-/* CUADRO DE DETALLES */
-.shop-details { 
-    background: #f4f4f4;
-    padding: 9px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-
-.shop-details p {
-    margin: 5px 0;
-}
-
-/* TAGS */
-.shop-tags {
+.store-top-inline {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 8px;
+}
+
+.store-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
+
+/* COLUMNS */
+.store-column-left,
+.store-column-center,
+.store-column-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 30%;
+}
+
+.store-column-left {
+  width: 30%;
+  align-items: center;
+  text-align: center;
+}
+
+.store-column-center {
+  width: 35%;
+}
+
+.store-column-right {
+  width: 35%;
+}
+
+/* LEFT SIDE */
+.store-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.store-name {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 0px;
+}
+
+.store-description {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.store-rating {
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.store-subtitle {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.store-button {
+  background: #007bff;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.store-button:hover {
+  background: #0066d3;
+}
+
+/* RIGHT SIDE */
+.store-details {
+  background: #f4f4f4;
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  line-height: 1.45;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+}
+
+/* BOTON DE LA TIENDA*/
+
+.store-button-inline {
+    padding: 8px 16px;
+    background: #007bff;         
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;  
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+
+    white-space: nowrap;         
+}
+
+/* Hover chulo */
+.store-button-inline:hover {
+    background: #005fcc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* Click */
+.store-button-inline:active {
+    transform: scale(0.97);
+}
+
+.tag-list {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .tag {
-    background: #e8f1ff;
-    color: #0078ff;
-    padding: 6px 12px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 600;
+  background: #e7f0ff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #007bff;
+  font-weight: 600;
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-    .shop-card-top {
-        flex-direction: column;
-    }
+/* ============================= */
+/*         CARRUSEL REVIEWS      */
+/* ============================= */
 
-    .shop-center {
-        border-right: none;
-        padding-right: 0;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 20px;
-    }
-
-    .shop-right {
-        width: 100%;
-    }
+.carousel-container {
+  text-align: center;
+  padding: 10px;
 }
 
-/* ===== CONTENEDOR DEL MAPA ===== */
-.map-container {
-    width: 100%;
-    max-width: 1200px;
-    height: 700px;
-
-    /* para centrar */
-    margin: 0 auto;
-
-    /* estético */
-    border-radius: 12px;
-    overflow: hidden;
-    background: #ddd;
-
-    /* que se coloque debajo correctamente */
-    display: block;
-
-    /* Evita que flexbox de un padre lo reduzca */
-    flex-shrink: 0;
+/* FADE ANIMATION */
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
-/* ===== IFRAME ===== */
-.map-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .map-container {
-        height: 350px;
-    }
+.carousel-stars {
+  font-size: 18px;
+  color: gold;
+}
+
+.carousel-text {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.carousel-author {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Controls */
+.carousel-controls {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.carousel-btn {
+  background: #007bff;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.carousel-btn:hover {
+  background: #005fcc;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #c7d7ff;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background: #007bff;
+}
+
+/* ============================= */
+/*           RESPONSIVE          */
+/* ============================= */
+
+@media (max-width: 1000px) {
+  .store-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .store-column-left{
+    width: 30%;
+  }
+
+  .store-column-center{
+    width: 35%;
+  }
+  .store-column-right {
+    width: 35%;
+    flex-direction: column;
+    gap: 12px   ;
+  }
+}
+@media (max-width: 600px) {
+  .map-container {
+    height: 250px;
+  }
 }
