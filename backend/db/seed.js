@@ -1,55 +1,49 @@
-// db/seed.js
-export async function seedData(db) {
+import { db } from "./index.js";
+import bcrypt from "bcryptjs";
+
+export async function seedDatabase() {
     try {
-        // Categorías
+        // Verificar si ya hay datos
+        const [existingUsers] = await db.query("SELECT COUNT(*) as count FROM users");
+        
+        if (existingUsers[0].count > 0) {
+            console.log("⚠️  La base de datos ya contiene datos. Saltando seed...");
+            return;
+        }
+
+        console.log("🌱 Iniciando seed de la base de datos...");
+
+        // Hash de contraseñas
+        const password1 = await bcrypt.hash("admin123", 10);
+        const password2 = await bcrypt.hash("user123", 10);
+
+        // Insertar usuarios
         await db.query(`
-        INSERT INTO categorias (nombre, descripcion, icono) VALUES
-        ('Frutas y Verduras', 'Productos frescos', 'apple'),
-        ('Lácteos', 'Leche, queso, yogur', 'milk'),
-        ('Panadería', 'Pan y bollería', 'bread'),
-        ('Carnes', 'Carnes frescas y procesadas', 'meat'),
-        ('Bebidas', 'Agua, refrescos, zumos', 'drink')
-        ON DUPLICATE KEY UPDATE nombre=VALUES(nombre);
+            INSERT INTO users (username, email, password) VALUES
+            ('admin', 'admin@example.com', ?),
+            ('usuario1', 'user1@example.com', ?)
+        `, [password1, password2]);
+
+        console.log("✅ Usuarios insertados");
+
+        // Insertar supermercados
+        await db.query(`
+            INSERT INTO supermarkets (name, address, city) VALUES
+            ('Mercadona Centro', 'Calle Mayor 1', 'Barcelona'),
+            ('Carrefour Express', 'Av. Diagonal 123', 'Barcelona'),
+            ('Lidl Norte', 'Calle Norte 45', 'Madrid')
         `);
 
-        // Tiendas
-        await db.query(`
-        INSERT INTO tiendas (nombre, cadena, direccion, ciudad, codigo_postal, latitud, longitud, telefono) VALUES
-        ('Mercadona Gracia', 'Mercadona', 'Calle Gran de Gràcia 123', 'Barcelona', '08012', 41.403629, 2.158680, '932123456'),
-        ('Carrefour Express Eixample', 'Carrefour', 'Passeig de Gràcia 45', 'Barcelona', '08007', 41.391900, 2.165850, '933456789'),
-        ('Lidl Diagonal', 'Lidl', 'Avinguda Diagonal 500', 'Barcelona', '08006', 41.395500, 2.153000, '934567890')
-        ON DUPLICATE KEY UPDATE nombre=VALUES(nombre);
-        `);
+        console.log("✅ Supermercados insertados");
+        console.log("✅ Seed completado exitosamente");
 
-        // Productos
-        await db.query(`
-        INSERT INTO productos (nombre, marca, categoria_id, codigo_barras, unidad_medida) VALUES
-        ('Leche Entera', 'Hacendado', 2, '8480000123456', 'litros'),
-        ('Pan de Molde', 'Bimbo', 3, '8410000123456', 'unidades'),
-        ('Manzanas Golden', 'Sin marca', 1, '8420000123456', 'kg'),
-        ('Agua Mineral', 'Font Vella', 5, '8430000123456', 'litros')
-        ON DUPLICATE KEY UPDATE nombre=VALUES(nombre);
-        `);
-
-        // Precios
-        await db.query(`
-        INSERT INTO precios (producto_id, tienda_id, precio, en_stock) VALUES
-        (1, 1, 0.95, TRUE),
-        (1, 2, 1.05, TRUE),
-        (1, 3, 0.89, TRUE),
-        (2, 1, 1.20, TRUE),
-        (2, 2, 1.35, TRUE),
-        (3, 1, 2.50, TRUE),
-        (3, 3, 2.30, TRUE),
-        (4, 1, 0.35, TRUE),
-        (4, 2, 0.40, TRUE),
-        (4, 3, 0.32, TRUE)
-        ON DUPLICATE KEY UPDATE precio=VALUES(precio);
-        `);
-
-        console.log("Datos de prueba insertados correctamente.");
+        // Mostrar credenciales de prueba
+        console.log("\n📧 Credenciales de prueba:");
+        console.log("   Email: admin@example.com | Password: admin123");
+        console.log("   Email: user1@example.com | Password: user123\n");
 
     } catch (err) {
-        console.error("Error al insertar datos de prueba:", err);
+        console.error("❌ Error durante el seed:", err);
+        throw err;
     }
 }
