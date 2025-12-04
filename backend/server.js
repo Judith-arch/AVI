@@ -41,12 +41,285 @@ app.get("/api", (req, res) => {
     res.json({
         message: "API Documentation",
         endpoints: [
-            { method: "POST", path: "/api/auth/register", description: "Registrar usuario" },
-            { method: "POST", path: "/api/auth/login", description: "Iniciar sesión" },
-            { method: "GET", path: "/api/auth/me", description: "Obtener usuario actual (protegido)" },
-            { method: "GET", path: "/api/supermarkets", description: "Listar supermercados" },
-            { method: "GET", path: "/api/supermarkets/:id", description: "Obtener supermercado por ID" },
-            { method: "POST", path: "/api/supermarkets", description: "Crear supermercado (protegido)" }
+            {
+                name: "Register",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "POST",
+                    url: "http://localhost:5000/api/auth/register",
+                    body: {
+                        type: "json",
+                        example: {
+                            "username": "testuser",
+                            "email": "test@example.com",
+                            "password": "123456"
+                        }
+                    }
+                },
+                response: {
+                    success: {
+                        "success": true,
+                        "message": "Usuario registrado exitosamente",
+                        "data": {
+                            "id": 3,
+                            "username": "testuser",
+                            "email": "test@example.com",
+                            "created_at": "2024-12-04T..."
+                        }
+                    }
+                }
+            },
+            {
+                name: "Login",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "POST",
+                    url: "http://localhost:5000/api/auth/login",
+                    body: {
+                        type: "json",
+                        example: {
+                            "email": "admin@example.com",
+                            "password": "admin123"
+                        }
+                    }
+                },
+                response: {
+                    success: {
+                        "success": true,
+                        "message": "Login exitoso",
+                        "data": {
+                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                            "user": {
+                                "id": 1,
+                                "username": "admin",
+                                "email": "admin@example.com"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                name: "Auth / Obtener usuario actual",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "GET",
+                    url: "http://localhost:5000/api/auth/me",
+                    headers: {
+                        Authorization: "Bearer TU_TOKEN_AQUI"
+                    },
+                    note: "🔑 IMPORTANTE: Copia el token para los siguientes tests protegidos"
+                },
+                response: {
+                    withToken: {
+                        "success": true,
+                        "data": {
+                            "id": 1,
+                            "username": "admin",
+                            "email": "admin@example.com",
+                            "latitud_favorita": "41.38510000",
+                            "longitud_favorita": "2.17340000",
+                            "created_at": "2024-12-04T..."
+                        }
+                    },
+                    withoutToken: {
+                        "success": false,
+                        "message": "Token no proporcionado"
+                    }
+                }
+            },
+            {
+                name: "Get Productos",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "GET",
+                    url: "http://localhost:5000/api/products"
+                },
+                response: {
+                    success: "Ver JSON completo en documentación original (18 productos)"
+                }
+            },
+            {
+                name: "Get Producto by ID",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "GET",
+                    url: "http://localhost:5000/api/products/1"
+                },
+                response: {
+                    success: "Ver JSON ejemplo producto ID 1",
+                    notFound: {
+                        "success": false,
+                        "message": "Producto no encontrado"
+                    }
+                }
+            },
+            {
+                name: "Get Productos by Categoría",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "GET",
+                    url: "http://localhost:5000/api/products?category=1"
+                },
+                response: {
+                    success: "Ver JSON ejemplo (4 productos)",
+                    empty: {
+                        "success": true,
+                        "count": 0,
+                        "data": []
+                    }
+                }
+            },
+            {
+                name: "Get Productos by Supermarket",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "GET",
+                    url: "http://localhost:5000/api/products?supermarket=1"
+                },
+                response: {
+                    success: "Ver JSON ejemplo (7 productos)",
+                    empty: {
+                        "success": true,
+                        "count": 0,
+                        "data": []
+                    }
+                }
+            },
+            {
+                name: "Get Productos by nombre (search)",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "GET",
+                    url: "http://localhost:5000/api/products?search=leche"
+                },
+                response: {
+                    success: "Ver JSON ejemplo (1 producto)"
+                }
+            },
+            {
+                name: "Get Categorías",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "GET",
+                    url: "http://localhost:5000/api/products/categories"
+                },
+                response: {
+                    success: "Ver JSON ejemplo (8 categorías)"
+                }
+            },
+            {
+                name: "Producto protegido (Crear Producto)",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "POST",
+                    url: "http://localhost:5000/api/products",
+                    headers: {
+                        Authorization: "Bearer TU_TOKEN_AQUI"
+                    },
+                    body: {
+                        type: "json",
+                        example: {
+                            "name": "Aceite de Oliva",
+                            "descripcion": "Aceite virgen extra",
+                            "price": 8.50,
+                            "unidad_medida": "litro",
+                            "category_id": 1,
+                            "supermarket_id": 1
+                        }
+                    }
+                },
+                response: {
+                    success: "Ver JSON ejemplo producto creado",
+                    error500: "Error interno del servidor al usar token incorrecto"
+                }
+            },
+            {
+                name: "Get Supermarkets",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "GET",
+                    url: "http://localhost:5000/api/supermarkets"
+                },
+                response: {
+                    success: "Ver JSON ejemplo 4 supermercados"
+                }
+            },
+            {
+                name: "Get Supermarkets by ID",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "GET",
+                    url: "http://localhost:5000/api/supermarkets/1"
+                },
+                response: {
+                    success: "Ver JSON ejemplo supermercado ID 1"
+                }
+            },
+            {
+                name: "Crear lista de la compra",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "POST",
+                    url: "http://localhost:5000/api/shopping-lists",
+                    headers: {
+                        Authorization: "Bearer TU_TOKEN_AQUI"
+                    },
+                    body: {
+                        type: "json",
+                        example: { "name": "Lista del supermercado" }
+                    }
+                },
+                response: {
+                    success: "Ver JSON ejemplo lista creada"
+                }
+            },
+            {
+                name: "Get Lista de la compra",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "GET",
+                    url: "http://localhost:5000/api/shopping-lists"
+                },
+                response: {
+                    success: "Ver JSON ejemplo (1 lista)"
+                }
+            },
+            {
+                name: "Post Item en lista de la compra",
+                author: "Judith",
+                status: "Funciona December 4, 2025",
+                request: {
+                    method: "POST",
+                    url: "http://localhost:5000/api/shopping-lists/1/items",
+                    headers: {
+                        Authorization: "Bearer TU_TOKEN_AQUI"
+                    },
+                    body: {
+                        type: "json",
+                        example: {
+                            "product_id": 1,
+                            "quantity": 2
+                        }
+                    }
+                },
+                response: {
+                    success: "Ver JSON ejemplo item añadido"
+                }
+            }
         ]
     });
 });

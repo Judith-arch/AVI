@@ -2,7 +2,7 @@ import { query } from "../db/index.js";
 
 class Supermarket {
     static async findAll() {
-        return await query("SELECT * FROM supermarkets ORDER BY name");
+        return await query("SELECT * FROM supermarkets ORDER BY nombre");
     }
 
     static async findById(id) {
@@ -13,18 +13,18 @@ class Supermarket {
         return results[0] || null;
     }
 
-    static async create({ name, address, city }) {
+    static async create({ nombre, direccion, ciudad }) {
         const result = await query(
-            "INSERT INTO supermarkets (name, address, city) VALUES (?, ?, ?)",
-            [name, address, city]
+            "INSERT INTO supermarkets (nombre, direccion, ciudad) VALUES (?, ?, ?)",
+            [nombre, direccion, ciudad]
         );
         return result.insertId;
     }
 
-    static async searchByCity(city) {
+    static async searchByCity(ciudad) {
         return await query(
-            "SELECT * FROM supermarkets WHERE city LIKE ? ORDER BY name",
-            [`%${city}%`]
+            "SELECT * FROM supermarkets WHERE ciudad LIKE ? ORDER BY nombre",
+            [`%${ciudad}%`]
         );
     }
 }
