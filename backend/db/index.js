@@ -54,6 +54,8 @@ async function createTables() {
                 username VARCHAR(50) NOT NULL,
                 email VARCHAR(100) NOT NULL UNIQUE,
                 password VARCHAR(255) NOT NULL,
+                latitud_favorita DECIMAL(10, 8), -- Ubicación guardada del usuario
+                longitud_favorita DECIMAL(11, 8),
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         `);
@@ -61,16 +63,76 @@ async function createTables() {
         // Tabla supermarkets (ejemplo)
         await db.query(`
             CREATE TABLE IF NOT EXISTS supermarkets (
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                nombre VARCHAR(100) NOT NULL,
+                cadena VARCHAR(100),
+                direccion VARCHAR(255) NOT NULL,
+                ciudad VARCHAR(100) NOT NULL,
+                codigo_postal VARCHAR(10),
+                latitud DECIMAL(10, 8) NOT NULL,
+                longitud DECIMAL(11, 8) NOT NULL,
+                telefono VARCHAR(20),
+                horario_apertura TIME,
+                horario_cierre TIME,
+                activa BOOLEAN DEFAULT TRUE,
+                fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        `);
+
+        // Tabla categories
+        await db.query(`
+            CREATE TABLE IF NOT EXISTS categories (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(100) NOT NULL,
-                address VARCHAR(255) NOT NULL,
-                city VARCHAR(100) NOT NULL,
+                name VARCHAR(100) NOT NULL UNIQUE,
+                descripcion TEXT,
+                icono VARCHAR(50),
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         `);
 
-        console.log("✅ Tablas creadas/verificadas");
+        // Tabla products
+        await db.query(`
+            CREATE TABLE IF NOT EXISTS products (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(200) NOT NULL,
+                descripcion TEXT,
+                price DECIMAL(10, 2) NOT NULL,
+                unidad_medida VARCHAR(20),
+                category_id INT,
+                supermarket_id INT,
+                image_url VARCHAR(500),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL,
+                FOREIGN KEY (supermarket_id) REFERENCES supermarkets(id) ON DELETE SET NULL
+            )
+        `);
 
+        // Tabla shopping_lists
+        await db.query(`
+            CREATE TABLE IF NOT EXISTS shopping_lists (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT NOT NULL,
+                name VARCHAR(200) NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+            )
+        `);
+
+        // Tabla shopping_list_items
+        await db.query(`
+            CREATE TABLE IF NOT EXISTS shopping_list_items (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                shopping_list_id INT NOT NULL,
+                product_id INT NOT NULL,
+                quantity INT DEFAULT 1,
+                checked BOOLEAN DEFAULT FALSE,
+                added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (shopping_list_id) REFERENCES shopping_lists(id) ON DELETE CASCADE,
+                FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+            )
+        `);
+
+        console.log("✅ Tablas creadas/verificadas");
     } catch (err) {
         console.error("❌ Error al crear tablas:", err);
         throw err;

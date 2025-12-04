@@ -37,9 +37,9 @@ const errorHandler = (err, req, res, next) => {
     res.status(500).json({
         success: false,
         message: "Error interno del servidor",
-        ...(process.env.NODE_ENV === "development" && { 
+        ...(process.env.NODE_ENV === "development" && {
             error: err.message,
-            stack: err.stack 
+            stack: err.stack
         })
     });
 };

@@ -6,6 +6,8 @@ import { seedDatabase } from "./db/seed.js";
 import authRoutes from "./routes/authRoutes.js";
 import supermarketRoutes from "./routes/supermarketRoutes.js";
 import errorHandler from "./middlewares/errorHandler.js";
+import productRoutes from "./routes/productRoutes.js";
+import shoppingListRoutes from "./routes/shoppingListRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,7 +27,7 @@ if (process.env.NODE_ENV === "development") {
 
 // ===== RUTAS =====
 app.get("/", (req, res) => {
-    res.json({ 
+    res.json({
         message: "🚀 API funcionando correctamente",
         version: "1.0.0",
         endpoints: {
@@ -51,6 +53,8 @@ app.get("/api", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/supermarkets", supermarketRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/shopping-lists", shoppingListRoutes);
 
 // Ruta 404
 app.use((req, res) => {
