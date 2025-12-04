@@ -82,13 +82,13 @@ AVI/
 
 ## Autenticación
 
-#### Registro
+### Registro
 `````
 POST /api/auth/register
 `````
-#####Content-Type: application/json
+###Content-Type: application/json
     
-####Body:
+###Body:
 ```http
 {
   "username": "testuser",
@@ -96,7 +96,7 @@ POST /api/auth/register
   "password": "123456"
 }
 ```
-####Respuesta:
+###Respuesta:
 ```http
 {
   "success": true,
@@ -110,13 +110,13 @@ POST /api/auth/register
 }
 ```
 
-#### Login
+### Login
 `````
 POST /api/auth/login
 `````
 Content-Type: application/json
     
-#####Body:
+###Body:
 ```http
 {
   "email": "admin@example.com",
@@ -124,7 +124,7 @@ Content-Type: application/json
 }
 
 ```
-#####Respuesta:
+###Respuesta:
 ```http
 {
   "success": true,
@@ -140,14 +140,14 @@ Content-Type: application/json
 }
 ```
 
-#### Obtener usuario actual (protegido)
+### Obtener usuario actual (protegido)
 `````
 GET /api/auth/me
 Authorization: Bearer JWT_TOKEN_AQUI
 `````
 Content-Type: application/json
     
-#####Respuesta con token:
+###Respuesta con token:
 ```http
 {
   "success": true,
@@ -162,7 +162,7 @@ Content-Type: application/json
 }
 
 ```
-#####Respuesta sin token:
+###Respuesta sin token:
 ```http
 {
   "success": false,
@@ -170,17 +170,17 @@ Content-Type: application/json
 }
 ```
 
-#### Productos
+### Productos
 `````
 GET /api/products
 `````
 Respuesta: Lista de productos con campos como id, name, descripcion, price, unidad_medida, category_name, supermarket_name, supermarket_city, etc.
     
-#####Obtener producto por ID
+###Obtener producto por ID
 ```http
 GET /api/products/:id
 ```
-####Respuesta:
+###Respuesta:
 ```http
 {
     "success": true,
@@ -201,7 +201,7 @@ GET /api/products/:id
     }
 }
 ```
-######No encontrado:
+###No encontrado:
 ```http
 {
     "success": false,
@@ -209,25 +209,25 @@ GET /api/products/:id
 }
 ```
 Otras opciones de GET de Productos:
-#####Obtener producto por Categoría
+###Obtener producto por Categoría
 ```http
 GET http://localhost:5000/api/products?category=1
 ```
-#####Obtener producto por Supermercado
+###Obtener producto por Supermercado
 ```http
 GET http://localhost:5000/api/products?supermarket=1
 ```
-#####Obtener producto por Nombre
+###Obtener producto por Nombre
 ```http
 GET http://localhost:5000/api/products?search=leche
 ```
 
 ###Supermercados
-#####Obtener lista de Supermercados
+###Obtener lista de Supermercados
 ```http
 GET /api/supermarkets
 ```
-####Respuesta:
+###Respuesta:
 ```http
 {
     "success": true,
