@@ -3,7 +3,7 @@
 Proyecto que gestiona usuarios, productos, supermercados y listas de la compra. Incluye backend en Node.js/Express y frontend en React.
 
 ## Estructura del proyecto (se ha de ir actualizando)
-
+```http
 AVI/
 ├── backend/                           # API REST en Node.js (Express + MySQL)
 │   ├── config/                        # Configuración central del sistema
@@ -75,7 +75,7 @@ AVI/
     │
     └── package.json                   # Dependencias del frontend
 
-    
+```
 ---
 
 ## Documentación de la API
@@ -85,16 +85,19 @@ AVI/
 #### Registro
 ```http
 POST /api/auth/register
+```
 Content-Type: application/json
 
 Body:
+```http
 {
   "username": "testuser",
   "email": "test@example.com",
   "password": "123456"
 }
-
+```
 Respuesta:
+```http
 {
   "success": true,
   "message": "Usuario registrado exitosamente",
@@ -105,3 +108,5 @@ Respuesta:
     "created_at": "2024-12-04T..."
   }
 }
+```
+
