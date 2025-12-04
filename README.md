@@ -78,65 +78,175 @@ AVI/
 `````
 ---
 
-## Documentación de la API
+# Documentación de la API
 
-### Autenticación
+## Autenticación
 
 #### Registro
-```http
-    POST /api/auth/register
-```
+`````
+POST /api/auth/register
+`````
 #####Content-Type: application/json
     
 ####Body:
 ```http
-    {
-      "username": "testuser",
-      "email": "test@example.com",
-      "password": "123456"
-    }
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "123456"
+}
 ```
 ####Respuesta:
 ```http
-    {
-      "success": true,
-      "message": "Usuario registrado exitosamente",
-      "data": {
-        "id": 3,
-        "username": "testuser",
-        "email": "test@example.com",
-        "created_at": "2024-12-04T..."
-      }
-    }
+{
+  "success": true,
+  "message": "Usuario registrado exitosamente",
+  "data": {
+    "id": 3,
+    "username": "testuser",
+    "email": "test@example.com",
+    "created_at": "2024-12-04T..."
+  }
+}
 ```
 
 #### Login
-```http
-    POST /api/auth/login
-```
-#####Content-Type: application/json
+`````
+POST /api/auth/login
+`````
+Content-Type: application/json
     
-####Body:
+#####Body:
 ```http
-    {
-      "email": "admin@example.com",
-      "password": "admin123"
-    }
+{
+  "email": "admin@example.com",
+  "password": "admin123"
+}
 
+```
+#####Respuesta:
+```http
+{
+  "success": true,
+  "message": "Login exitoso",
+  "data": {
+    "token": "JWT_TOKEN_AQUI",
+    "user": {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@example.com"
+    }
+  }
+}
+```
+
+#### Obtener usuario actual (protegido)
+`````
+GET /api/auth/me
+Authorization: Bearer JWT_TOKEN_AQUI
+`````
+Content-Type: application/json
+    
+#####Respuesta con token:
+```http
+{
+  "success": true,
+  "data": {
+    "id": 1,
+    "username": "admin",
+    "email": "admin@example.com",
+    "latitud_favorita": "41.38510000",
+    "longitud_favorita": "2.17340000",
+    "created_at": "2024-12-04T..."
+  }
+}
+
+```
+#####Respuesta sin token:
+```http
+{
+  "success": false,
+  "message": "Token no proporcionado"
+}
+```
+
+#### Productos
+`````
+GET /api/products
+`````
+Respuesta: Lista de productos con campos como id, name, descripcion, price, unidad_medida, category_name, supermarket_name, supermarket_city, etc.
+    
+#####Obtener producto por ID
+```http
+GET /api/products/:id
 ```
 ####Respuesta:
 ```http
-    {
-      "success": true,
-      "message": "Login exitoso",
-      "data": {
-        "token": "JWT_TOKEN_AQUI",
-        "user": {
-          "id": 1,
-          "username": "admin",
-          "email": "admin@example.com"
-        }
-      }
+{
+    "success": true,
+    "data": {
+        "id": 1,
+        "name": "Manzanas Golden",
+        "descripcion": "Manzanas frescas origen España",
+        "price": "2.50",
+        "unidad_medida": "kg",
+        "category_id": 1,
+        "supermarket_id": 1,
+        "image_url": null,
+        "created_at": "2025-12-04T08:53:30.000Z",
+        "category_name": "Frutas y Verduras",
+        "supermarket_name": "Mercadona Centro",
+        "supermarket_address": "Calle Mayor 1",
+        "supermarket_city": "Barcelona"
     }
+}
+```
+######No encontrado:
+```http
+{
+    "success": false,
+    "message": "Producto no encontrado"
+}
+```
+Otras opciones de GET de Productos:
+#####Obtener producto por Categoría
+```http
+GET http://localhost:5000/api/products?category=1
+```
+#####Obtener producto por Supermercado
+```http
+GET http://localhost:5000/api/products?supermarket=1
+```
+#####Obtener producto por Nombre
+```http
+GET http://localhost:5000/api/products?search=leche
 ```
 
+###Supermercados
+#####Obtener lista de Supermercados
+```http
+GET /api/supermarkets
+```
+####Respuesta:
+```http
+{
+    "success": true,
+    "count": 4,
+    "data": [
+        {
+            "id": 2,
+            "nombre": "Carrefour Express",
+            "cadena": "Carrefour",
+            "direccion": "Av. Diagonal 123",
+            "ciudad": "Barcelona",
+            "codigo_postal": "08028",
+            "latitud": "41.38790000",
+            "longitud": "2.16990000",
+            "telefono": "933445566",
+            "horario_apertura": "08:00:00",
+            "horario_cierre": "22:00:00",
+            "activa": 1,
+            "fecha_registro": "2025-12-04T08:53:30.000Z"
+        },
+        // asi continuaria la lista con todos los qu hay
+```
