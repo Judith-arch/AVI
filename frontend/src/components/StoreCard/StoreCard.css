@@ -1,0 +1,96 @@
+/* ============================= */
+/*       TARJETA COMPACTA        */
+/* ============================= */
+
+.store-card {
+  background: white;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.30);
+
+}
+
+.store-column-left {
+  width: 20%;   /* antes 22–30% */
+  gap: 4px;     /* menos espacio entre elementos */
+}
+
+.store-column-center {
+  width: 30%;   /* antes 33–35% */
+}
+
+.store-column-right {
+  width: 25%;   /* antes 28–35% */
+  gap: 6px;     /* antes 8–12px */
+}
+
+
+/* COLUMNAS MÁS PEQUEÑAS */
+.store-column-left { width: 22%; }
+.store-column-center { width: 33%; }
+.store-column-right { 
+  width: 28%;
+  gap: 8px;                /* <--- menos espacio */
+}
+
+.store-logo {
+  width: 45px;   /* antes 55–70px */
+  height: 45px;
+}
+
+
+.store-name {
+  font-size: 16px; /* antes 18–22 */
+}
+
+.store-subtitle {
+  font-size: 12px;
+}
+
+.store-rating-inline {
+  font-size: 14px;
+}
+
+.store-top-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;   /* antes 15px */
+  margin-bottom: 6px;
+}
+
+.store-button-inline {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+.store-details {
+  padding: 8px;      /* antes 12–18px */
+  font-size: 12px;   /* antes 14–15px */
+  border-radius: 8px;
+  line-height: 1.2;  /* más compacto */
+}
+
+.tag {
+  padding: 3px 8px;
+  font-size: 11px;
+  border-radius: 12px;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+  .store-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .store-column-left,
+  .store-column-center,
+  .store-column-right {
+    width: 100%;
+  }
+}

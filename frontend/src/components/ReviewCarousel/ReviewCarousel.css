@@ -1,0 +1,93 @@
+/* ============================= */
+/*         CARRUSEL REVIEWS      */
+/* ============================= */
+
+.carousel-container {
+  text-align: center;
+  padding: 10px;
+}
+
+/* FADE */
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-stars {
+  font-size: 18px;
+  color: gold;
+}
+
+.carousel-text {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.carousel-author {
+  font-size: 14px;
+  color: #666;
+}
+
+/* CONTROLES */
+.carousel-controls {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.carousel-btn {
+  background: #007bff;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.carousel-btn:hover {
+  background: #005fcc;
+}
+
+/* DOTS */
+.carousel-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #c7d7ff;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background: #007bff;
+}
+
+.carousel-container {
+  padding: 4px; /* antes 10px */
+}
+
+.carousel-text {
+  font-size: 14px; /* antes 16 */
+  margin: 4px 0;
+}
+
+.carousel-author {
+  font-size: 12px;
+}
+
+.carousel-btn {
+  padding: 4px 8px; /* más pequeño */
+  font-size: 14px;
+}

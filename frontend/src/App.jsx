@@ -5,7 +5,7 @@ import Head from './components/Head'
 import Inicio from './pages/Inicio'
 import Productos from './pages/Productos'
 import Register from './pages/Register'
-import Map from './pages/Map'
+import Map from './pages/Map/Map'
 
 function App() {
   return (
