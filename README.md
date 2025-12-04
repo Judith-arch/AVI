@@ -86,7 +86,7 @@ AVI/
 `````
 POST /api/auth/register
 `````
-###Content-Type: application/json
+Content-Type: application/json
     
 #### Body:
 ```http
@@ -248,5 +248,6 @@ GET /api/supermarkets
             "activa": 1,
             "fecha_registro": "2025-12-04T08:53:30.000Z"
         },
-        // asi continuaria la lista con todos los qu hay
 ```
+... asi continuaria la lista con todos los que hay
+
