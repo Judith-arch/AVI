@@ -57,8 +57,20 @@ AVI/
     │   │   └── *.svg                  # Actualmente solo un SVG
     │   │
     │   ├── components/                # Componentes reutilizables
-    │   │   ├── Head.jsx               # Header de la app
-    │   │   └── Head.css               # Estilos del header
+    │   │   ├── FiltersPanel/
+    │   │   │   ├── FiltersPanel.css
+    │   │   │   └── FiltersPanel.jsx
+    │   │   ├── ReviewCarousel/
+    │   │   │   ├── ReviewCarousel.css
+    │   │   │   └── ReviewCarousel.jsx
+    │   │   ├── SearchBar/
+    │   │   │   ├── SearchBar.css
+    │   │   │   └── SearchBar.jsx
+    │   │   ├── StoreCard/
+    │   │   │   ├── StoreCard.css
+    │   │   │   └── StoreCard.jsx
+    │   │   ├── Head.css
+    │   │   └── Head.jsx
     │   │
     │   ├── pages/                     # Vistas principales
     │   │   ├── Inicio.jsx             # Página de inicio
@@ -66,7 +78,10 @@ AVI/
     │   │   ├── Productos.jsx          # Vista de productos + lista de compra
     │   │   ├── Productos.css
     │   │   ├── Register.jsx           # Registro / Login
-    │   │   └── Register.css
+    │   │   ├── Register.css
+    │   │   └── Map/                   # Vista de mapa
+    │   │       ├── Map.jsx
+    │   │       └── Map.css
     │   │
     │   ├── App.jsx                    # Componente raíz
     │   ├── App.css
