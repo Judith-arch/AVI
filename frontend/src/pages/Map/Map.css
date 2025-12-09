@@ -2,18 +2,50 @@
   display: flex;
   width: 100%;
   gap: 20px;
+  align-items: flex-start;
 }
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.pagination-controls button {
+  padding: 8px 16px;
+  background: #007bff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 
 /* IZQUIERDA: MAPA + TIENDAS */
 .map-content {
   width: 75%;
-  padding-left: 20px;
+  padding-left: 35px;
   box-sizing: border-box;
 }
 
 /* DERECHA: PANEL DE FILTROS */
 .filters-panel-wrapper {
   width: 25%;
+  min-width: 250px;
 }
 
 
@@ -44,6 +76,14 @@
 }
 
 /* LISTA DE TIENDAS */
+
+.stores-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 10px 0 15px 20px;
+  color: #333;
+}
+
 .stores-list {
   display: flex;
   flex-direction: column;
@@ -65,5 +105,27 @@
 @media (max-width: 600px) {
   .map-container {
     height: 250px;
+  }
+}
+
+/* PANTALLAS GRANDES (monitor de PC 1600px+) */
+@media (min-width: 1600px) {
+  .map-content {
+    width: 70%;     /* antes 75% */
+  }
+
+  .filters-panel-wrapper {
+    width: 30%;     /* panel un poco más ancho */
+  }
+
+  .map-container {
+    height: 800px;  /* mapa más grande */
+  }
+
+  .store-card {
+    width: 105%;    /* tarjetas más anchas */
+    transform: scale(1.05);  /* tarjetas más grandes sin romper layout */
+    transform-origin: top left;
+    max-width: 0 auto;
   }
 }

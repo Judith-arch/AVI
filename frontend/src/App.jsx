@@ -6,6 +6,7 @@ import Inicio from './pages/Inicio'
 import Productos from './pages/Productos'
 import Register from './pages/Register'
 import Map from './pages/Map/Map'
+import Footer from './components/Footer/Footer.jsx'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/productos" element={<Productos />} />
       <Route path="/map" element={<Map />} />
     </Routes>
+    <Footer />
     </>
   )
 }

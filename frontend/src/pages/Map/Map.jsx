@@ -2,6 +2,8 @@ import "./Map.css";
 import StoreCard from "../../components/StoreCard/StoreCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import FiltersPanel from "../../components/FiltersPanel/FiltersPanel";
+import { useState } from "react";
+import OffersNearYou from "../../sections/OffersNearYou/OfferNearYou";
 
 
 export default function Map() {
@@ -12,6 +14,191 @@ export default function Map() {
         { text: "Productos frescos de verdad, volveré.", author: "Laura S." }
     ];
 
+    const stores = [
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Central",
+            subtitle: "La tienda mejor valorada de la zona.",
+            rating: "4.8/5",
+            reviews: storeReviews,
+            address: "Calle Mayor 123, Madrid",
+            hours: "09:00 - 20:00",
+            phone: "912 345 678",
+            tags: ["Frescura", "Premium", "Atención", "Top Seller", "Local"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+
+            {
+            logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            name: "Tienda Norte",
+            subtitle: "Especializada en productos locales.",
+            rating: "4.7/5",
+            reviews: storeReviews,
+            address: "Calle Norte 22, Madrid",
+            hours: "10:00 - 21:00",
+            phone: "912 000 111",
+            tags: ["Local", "Artesanal"]
+            },
+        ];
+
+            const [page, setPage] = useState(0);
+            const [fade, setFade] = useState(false);
+
+            const ITEMS_PER_PAGE = 3;
+            const totalPages = Math.ceil(stores.length / ITEMS_PER_PAGE);
+
+            const startIndex = page * ITEMS_PER_PAGE;
+            const visibleStores = stores.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+            const nextPage = () => {
+                setFade(true);
+                setTimeout(() => {
+                    setPage((prev) => (prev + 1) % totalPages);
+                    setFade(false);
+                }, 300);
+            };
+
+            const prevPage = () => {
+                setFade(true);
+                setTimeout(() => {
+                    setPage((prev) => (prev - 1 + totalPages) % totalPages);
+                    setFade(false);
+                }, 300);
+            };
+
+            
     return (
         <div className="map-layout">
 
@@ -19,8 +206,8 @@ export default function Map() {
             <div className="map-content">
 
                 
-                <h1 className="map-title">Tiendas Mejor Valoradas</h1>
-                <p className="map-subtitle">Estas son algunas de las tiendas con mejores opiniones.</p>
+                <h1 className="map-title">Mapa de tiendas</h1>
+                <p className="map-subtitle">Ubicación de las tiendas según tu ubicación</p>
 
 
                 <SearchBar />
@@ -35,44 +222,22 @@ export default function Map() {
                     />
                 </div>
 
-                <div className="stores-list">
-                    <StoreCard
-                        logo="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-                        name="Tienda Central"
-                        subtitle="La tienda mejor valorada de la zona."
-                        rating="4.8/5"
-                        reviews={storeReviews}
-                        address="Calle Mayor 123, Madrid"
-                        hours="09:00 - 20:00"
-                        phone="912 345 678"
-                        tags={["Frescura", "Premium", "Atención", "Top Seller", "Local"]}
-                    />
+                <h2 className="stores-title">Tiendas cercanas de tu ubicación:</h2>
 
-                    <StoreCard
-                        logo="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-                        name="Tienda Central"
-                        subtitle="La tienda mejor valorada de la zona."
-                        rating="4.8/5"
-                        reviews={storeReviews}
-                        address="Calle Mayor 123, Madrid"
-                        hours="09:00 - 20:00"
-                        phone="912 345 678"
-                        tags={["Frescura", "Premium", "Atención", "Top Seller", "Local"]}
-                    />
-
-                    <StoreCard
-                        logo="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-                        name="Tienda Central"
-                        subtitle="La tienda mejor valorada de la zona."
-                        rating="4.8/5"
-                        reviews={storeReviews}
-                        address="Calle Mayor 123, Madrid"
-                        hours="09:00 - 20:00"
-                        phone="912 345 678"
-                        tags={["Frescura", "Premium", "Atención", "Top Seller", "Local"]}
-                    />
+                <div className={`stores-list ${fade ? "fade-out" : "fade-in"}`}>
+                {visibleStores.map((store, index) => (
+                    <StoreCard key={index} {...store} />
+                ))}
                 </div>
+
+                <div className="pagination-controls">
+                    <button onClick={prevPage}>◀ Anterior</button>
+                    <button onClick={nextPage}>Siguiente ▶</button>
+                </div>
+                <OffersNearYou />
             </div>
+
+            
 
             {/* COLUMNA DERECHA */}
             <div className="filters-panel-wrapper">

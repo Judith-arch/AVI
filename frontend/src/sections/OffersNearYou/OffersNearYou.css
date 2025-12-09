@@ -1,0 +1,46 @@
+/* CONTENEDOR */
+.offers-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+}
+
+/* TRACK QUE SE MUEVE */
+.offers-track {
+  display: flex;
+  gap: 22px;
+  animation: slide 30s linear infinite;
+}
+
+/* ANIMACIÓN AUTOMÁTICA */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* DIFUMINADOS A IZQ / DER */
+.offers-slider::before,
+.offers-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 80px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.offers-slider::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,1), transparent);
+}
+
+.offers-slider::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,1), transparent);
+}

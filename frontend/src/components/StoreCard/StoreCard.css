@@ -7,85 +7,118 @@
   border-radius: 10px;
   padding: 14px 16px;
   display: flex;
-  gap: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.30);
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.20);
 
+  /* 🔥 HACE LA TARJETA REALMENTE COMPACTA */
+  width: 100%;
+  max-width: 900px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  margin-right: auto;
+  min-height: 140px;
 }
 
+/* ============================= */
+/*         COLUMNAS COMPACTAS     */
+/* ============================= */
+
 .store-column-left {
-  width: 20%;   /* antes 22–30% */
-  gap: 4px;     /* menos espacio entre elementos */
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
 .store-column-center {
-  width: 30%;   /* antes 33–35% */
+  width: 42%;
+  text-align: center;
 }
 
 .store-column-right {
-  width: 25%;   /* antes 28–35% */
-  gap: 6px;     /* antes 8–12px */
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
 }
 
-
-/* COLUMNAS MÁS PEQUEÑAS */
-.store-column-left { width: 22%; }
-.store-column-center { width: 33%; }
-.store-column-right { 
-  width: 28%;
-  gap: 8px;                /* <--- menos espacio */
-}
+/* ============================= */
+/*         ELEMENTOS REDUCIDOS    */
+/* ============================= */
 
 .store-logo {
-  width: 45px;   /* antes 55–70px */
+  width: 45px;
   height: 45px;
 }
 
-
 .store-name {
-  font-size: 16px; /* antes 18–22 */
+  font-size: 16px;
+  margin: 0;
 }
 
 .store-subtitle {
   font-size: 12px;
+  color: #666;
+  margin: 0 0 4px 0;
 }
 
 .store-rating-inline {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .store-top-inline {
   display: flex;
   align-items: center;
-  gap: 10px;   /* antes 15px */
-  margin-bottom: 6px;
+  gap: 8px;
 }
 
 .store-button-inline {
-  padding: 4px 10px;
+  padding: 3px 8px;
   font-size: 12px;
   border-radius: 6px;
 }
 
 .store-details {
-  padding: 8px;      /* antes 12–18px */
-  font-size: 12px;   /* antes 14–15px */
+  padding: 6px 8px;
+  font-size: 12px;
   border-radius: 8px;
-  line-height: 1.2;  /* más compacto */
+  background: rgba(245, 245, 245, 0.8);
+  line-height: 1.25;
 }
 
 .tag {
-  padding: 3px 8px;
+  background: #89b8ff;
+  padding: 3px 6px;
   font-size: 11px;
+  font-weight: 500;
+
   border-radius: 12px;
+  border: 1px solid #0041a8;
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  transition: 0.25s ease;
 }
 
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
 
-/* RESPONSIVE */
+/* ============================= */
+/*          RESPONSIVE           */
+/* ============================= */
+
 @media (max-width: 1000px) {
   .store-card {
     flex-direction: column;
     text-align: center;
     padding: 15px;
+    max-width: 100%;
   }
 
   .store-column-left,
