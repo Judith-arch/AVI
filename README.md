@@ -1,8 +1,30 @@
-# AVI - API y Frontend
+# Proyecto Web AVI
 
 Proyecto que gestiona usuarios, productos, supermercados y listas de la compra. Incluye backend en Node.js/Express y frontend en React.
 
-## Estructura del proyecto (se ha de ir actualizando)
+## Objetivo
+Democratizar el acceso a información de precios, permitiendo a las familias optimizar su presupuesto de compra mediante decisiones informadas basadas en datos reales y actualizados.
+
+## Funcionalidades
+**Búsqueda por Proximidad**
+
+- Mapa interactivo que muestra supermercados cercanos a tu ubicación
+- Filtrado por distancia para encontrar las tiendas más convenientes
+- Visualización de múltiples cadenas de supermercados en un solo lugar
+
+**Comparación de Precios**
+
+- Base de datos actualizada con precios de productos en diferentes tiendas
+- Identificación rápida de las ofertas más competitivas
+- Alertas de precios especiales y descuentos activos
+
+**Gestión de Compras**
+
+- Creación de listas de compra personalizadas
+- Cálculo automático del coste total en diferentes supermercados
+- Recomendación de la tienda más económica según tu lista
+
+## Estructura del proyecto actualmente
 `````
 AVI/
 ├── backend/                           # API REST en Node.js (Express + MySQL)
@@ -15,6 +37,13 @@ AVI/
 │   │   ├── userController.js          # Gestión del usuario
 │   │   ├── productController.js       # Endpoints de productos
 │   │   └── shoppingListController.js  # Endpoints de listas de compra
+│   │
+│   ├── db/                            # Recursos y utilidades relacionados con la base de datos
+│   │   ├── index.js                   # Del módulo DB inicializa modelos y exporta conexiones
+│   │   ├── info_scraps_mercadona.csv  # Dataset temporal con datos extraídos (scraping)
+│   │   ├── schema.js                  # Definición del esquema de tablas usando JavaScript
+│   │   ├── schema.sql                 # Script SQL con la creación de tablas y estructura completa
+│   │   └── seed.js                    # Script para poblar la base de datos con datos
 │   │
 │   ├── middlewares/                   # Funciones que interceptan las peticiones
 │   │   ├── authMiddleware.js          # Verificación JWT (protege rutas)
@@ -89,180 +118,142 @@ AVI/
     │   └── index.js                   # Renderizado al DOM
     │
     └── package.json                   # Dependencias del frontend
-
 `````
 ---
 
-# Documentación de la API
+## Tecnologías y herramientas utilizadas
+### **Backend**
+Frameworks, bases de datos, herramientas vinculadas al desarrollo del servidor.
+- **MySQL Server** – Motor de base de datos utilizado en el backend.
+- **MySQL Workbench** – Herramienta visual para administrar la base de datos.
+- **Postman** – Cliente para probar y documentar endpoints del backend.
+- **MapBox** (si el backend gestiona peticiones de mapas/geocodificación).
 
-## Autenticación
+Por usar:
+- **APIs externas** – Servicios de terceros que requiere el backend (ej: APIs de tiempo).
+- **Servidor VPS** – Hardware donde se ejecuta el backend.
+- **SSH** – Protocolo para conectarse al servidor y desplegar/administrar el backend.
 
-### Registro
+### **Frontend**
+Frameworks, librerías de UI/diseño, herramientas usadas para la parte visual o interacción con usuario.
+- **Figma** – Diseño UI/UX del frontend.
+- **Notion** – Documentación y planificación del desarrollo.
+- **GitHub** (licencias, integración con IDE) – Gestión del código del frontend.
+- **Visual** Studio Code – Editor principal para desarrollo del frontend.
+
+Por usar:
+- **MapBox** - El frontend muestra mapas con la librería JS.
+- **APIs externas** (si son consumidas directamente desde el frontend).
+
+### **DevOps**
+Infraestructura, despliegue, automatizaciones, contenedores y herramientas transversales.
+- **GitHub**
+  - Control de versiones
+  - CI/CD si se usa GitHub Actions
+- **Notion** – Organización del equipo (puede considerarse una herramienta transversal).
+
+Por usar:
+- **Docker** – Contenedores para backend, base de datos o entorno completo del proyecto.
+- **Servidor VPS** – Entorno de despliegue (también aplica aquí, además de backend).
+- **SSH** – Acceso remoto al VPS (gestionado dentro de prácticas DevOps).
+- **Licencias de IDE** (IntelliJ, etc.) – Herramientas usadas en la cadena de desarrollo.
+
+## Cómo ejecutar el proyecto
+### 1.Instalación
+(Por detallar: pasos para instalar dependencias y preparar el entorno)
+
+- Clonar el repositorio:
 `````
-POST /api/auth/register
+git clone <URL-del-repo>
 `````
-Content-Type: application/json
-    
-#### Body:
-```http
-{
-  "username": "testuser",
-  "email": "test@example.com",
-  "password": "123456"
-}
-```
-#### Respuesta:
-```http
-{
-  "success": true,
-  "message": "Usuario registrado exitosamente",
-  "data": {
-    "id": 3,
-    "username": "testuser",
-    "email": "test@example.com",
-    "created_at": "2024-12-04T..."
-  }
-}
-```
 
-### Login
+- Instalar dependencias del backend y frontend:
 `````
-POST /api/auth/login
+cd backend
+npm install
+cd ../frontend
+npm install
 `````
-Content-Type: application/json
-    
-#### Body:
-```http
-{
-  "email": "admin@example.com",
-  "password": "admin123"
-}
+- Otros pasos de instalación (creación de bases de datos, permisos, librerías globales, etc.)
 
-```
-#### Respuesta:
-```http
-{
-  "success": true,
-  "message": "Login exitoso",
-  "data": {
-    "token": "JWT_TOKEN_AQUI",
-    "user": {
-      "id": 1,
-      "username": "admin",
-      "email": "admin@example.com"
-    }
-  }
-}
-```
-
-### Obtener usuario actual (protegido)
+### 2. Comandos para levantar el proyecto
+#### Backend
+- Primera vez (para inicializar la base de datos con datos de prueba):
 `````
-GET /api/auth/me
-Authorization: Bearer JWT_TOKEN_AQUI
+npm run seed
 `````
-Content-Type: application/json
-    
-#### Respuesta con token:
-```http
-{
-  "success": true,
-  "data": {
-    "id": 1,
-    "username": "admin",
-    "email": "admin@example.com",
-    "latitud_favorita": "41.38510000",
-    "longitud_favorita": "2.17340000",
-    "created_at": "2024-12-04T..."
-  }
-}
 
-```
-#### Respuesta sin token:
-```http
-{
-  "success": false,
-  "message": "Token no proporcionado"
-}
-```
-
-### Productos
+- Levantar servidor normalmente:
 `````
-GET /api/products
+npm run dev
 `````
-Respuesta: Lista de productos con campos como id, name, descripcion, price, unidad_medida, category_name, supermarket_name, supermarket_city, etc.
-    
-#### Obtener producto por ID
-```http
-GET /api/products/:id
-```
-#### Respuesta:
-```http
-{
-    "success": true,
-    "data": {
-        "id": 1,
-        "name": "Manzanas Golden",
-        "descripcion": "Manzanas frescas origen España",
-        "price": "2.50",
-        "unidad_medida": "kg",
-        "category_id": 1,
-        "supermarket_id": 1,
-        "image_url": null,
-        "created_at": "2025-12-04T08:53:30.000Z",
-        "category_name": "Frutas y Verduras",
-        "supermarket_name": "Mercadona Centro",
-        "supermarket_address": "Calle Mayor 1",
-        "supermarket_city": "Barcelona"
-    }
-}
-```
-#### No encontrado:
-```http
-{
-    "success": false,
-    "message": "Producto no encontrado"
-}
-```
-Otras opciones de GET de Productos:
-#### Obtener producto por Categoría
-```http
-GET http://localhost:5000/api/products?category=1
-```
-#### Obtener producto por Supermercado
-```http
-GET http://localhost:5000/api/products?supermarket=1
-```
-#### Obtener producto por Nombre
-```http
-GET http://localhost:5000/api/products?search=leche
-```
 
-### Supermercados
-#### Obtener lista de Supermercados
-```http
-GET /api/supermarkets
-```
-#### Respuesta:
-```http
-{
-    "success": true,
-    "count": 4,
-    "data": [
-        {
-            "id": 2,
-            "nombre": "Carrefour Express",
-            "cadena": "Carrefour",
-            "direccion": "Av. Diagonal 123",
-            "ciudad": "Barcelona",
-            "codigo_postal": "08028",
-            "latitud": "41.38790000",
-            "longitud": "2.16990000",
-            "telefono": "933445566",
-            "horario_apertura": "08:00:00",
-            "horario_cierre": "22:00:00",
-            "activa": 1,
-            "fecha_registro": "2025-12-04T08:53:30.000Z"
-        },
-```
-... asi continuaria la lista con todos los que hay
+#### Frontend
+- Levantar servidor de desarrollo:
+`````
+npm run dev
+`````
 
+### 3. Variables de entorno necesarias
+(Por detallar: agregar las variables que necesita el backend y frontend, por ejemplo: DB_HOST, DB_USER, API_KEY, etc.)
+
+#### - Backend:
+`````
+DB_HOST=
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+JWT_SECRET=
+PORT=
+`````
+#### - Frontend:
+Posiblemente de a futuro cuando este definido:
+`````
+VITE_API_URL=
+MAPBOX_TOKEN=
+`````
+
+## Roadmap
+  ### – Etapas y sus fases del proyecto:
+
+    #### - **Planteamiento** (acabada)
+      - **Descripción del proyecto:** Qué es la aplicación y para qué sirve.
+        - **Alcance:** Qué funcionalidades sí y cuáles no se incluirán.
+      - **Usuarios objetivo:** Quiénes usarán la app y sus necesidades.
+      - **Roadmap / Cronograma:** Etapas del proyecto y fechas clave.
+      - **Requerimientos:**
+        - Funcionales (qué hace)
+        - No funcionales (rendimiento, seguridad, etc.).
+      - **Recursos necesarios**: Herramientas, licencias, infraestructura.
+      - **Funcionalidades del MVP:** Definir las esenciales para la primera versión.
+      - **Documentación e investigación previa:** Lógica del proceso, info necesaria para el desarrollo.
+    Etapa inicial donde se definió qué se va a construir, para quién y con qué alcance. Aquí se establecieron las bases conceptuales del proyecto.
+
+    #### - **Diseño** (en proceso)
+      - **Diagrama de uso / Flujo de navegación de la Web**
+      - **Wireframes/Previsualización** (Mockups)
+          - Baja fidelidad
+          - Alta fidelidad
+      - **Diseño Visual** (asentar las bases visuales, prototipo)
+      - **UI / UX Guidelines:** Colores, tipografías, botones, estilos. (Bootstrap)
+    Construcción de la experiencia visual y funcional del producto. Esta etapa define cómo se usa y cómo se ve la aplicación.
+  Actualmente se desarrolla en paralelo con la etapa de desarrollo.
+
+    #### - **Desarrollo** (en proceso)
+      - **Arquitectura del proyecto:** Frontend, backend, base de datos.
+      - **Tecnologías a usar:** Frameworks, librerías, servicios externos.
+      - **Estructura de carpetas y archivos:** Organización del código.
+      - **Integraciones:** APIs o servicios externos.
+      - **Checklist de funcionalidades:** Lista de features a implementar.
+    Implementación técnica del sistema: frontend, backend y base de datos.
+  Evoluciona en paralelo con el diseño y aún está pendiente de consolidar antes de comenzar el testing.
+
+    #### - **Testing QA** (en prceso)
+      - **Pruebas unitarias:** Validar componentes individuales del sistema (funciones, controladores, servicios).
+      - **Pruebas de integración:** Comprobación del flujo completo entre Frontend → Backend → Base de Datos.
+      - **Pruebas funcionales:** Confirmar que cada funcionalidad cumple su propósito y responde como se espera.
+      - **Pruebas de interfaz / usuario (UI/UX):** Verificar experiencia de usuario, navegación y diseño visual.
+      - **Pruebas de rendimiento:** Medir tiempos de carga, consumo de recursos y estabilidad bajo uso.
+      - **Registro de bugs / incidencias:** Documentación, seguimiento y resolución de errores detectados.
+      - **Corrección de errores y refinamiento final:** Ajustes previos al despliegue.
+  La fase de testing ha comenzado, especialmente con las pruebas de integración, verificando que el flujo completo entre frontend, backend y base de datos funciona correctamente. Aún queda completar las demás pruebas y la corrección de errores para cerrar esta etapa.
