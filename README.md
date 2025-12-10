@@ -10,11 +10,8 @@ Incluye **backend en Node.js/Express** y **frontend en React**.
 - [🎯 Objetivo y MVP](#objetivo-y-mvp)
 - [⚙️ Funcionalidades](#funcionalidades)
 - [📂 Estructura del Proyecto](#estructura-del-proyecto)
-- [🛠️ Tecnologías y Herramientas](#tecnologías-y-herramientas)
-  - [Backend](#backend)
-  - [Frontend](#frontend)
-  - [DevOps](#devops)
-- [🚀 Cómo Ejecutar el Proyecto](#cómo-ejecutar-el-proyecto)
+- [🛠️ Tecnologías y Herramientas](#tecnologias-y-herramientas)
+- [🚀 Cómo Ejecutar el Proyecto](#como-ejecutar-el-proyecto)
 - [📅 Roadmap](#roadmap)
 
 ---
