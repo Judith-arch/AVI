@@ -1,34 +1,63 @@
 # Proyecto Web AVI
 
-Proyecto que gestiona usuarios, productos, supermercados y listas de la compra. Incluye backend en Node.js/Express y frontend en React.
+*Proyecto que gestiona usuarios, productos, supermercados y listas de la compra.*
+Incluye **backend en Node.js/Express** y **frontend en React**.
 
-## Objetivo y MVP
-El objetivo final del proyecto es democratizar el acceso a información de precios, permitiendo que las familias optimicen su presupuesto de compra mediante decisiones informadas basadas en datos reales y actualizados.
+---
 
-Para esta primera versión (MVP), el foco está en implementar y asegurar el correcto funcionamiento de las funcionalidades listadas más abajo, de manera que se pueda probar la aplicación con un grupo reducido de usuarios conocidos. Esta fase de pruebas y refinamiento del MVP está planificada hasta aproximadamente enero.
+## Tabla de contenidos
 
-El MVP no contempla todas las características finales, sino que sirve como base funcional para validar la idea y recoger feedback antes de avanzar con el desarrollo completo y la integración de todas las funcionalidades.
+- [🎯 Objetivo y MVP](#objetivo-y-mvp)
+- [⚙️ Funcionalidades](#funcionalidades)
+- [📂 Estructura del Proyecto](#estructura-del-proyecto)
+- [🛠️ Tecnologías y Herramientas](#tecnologías-y-herramientas)
+  - [Backend](#backend)
+  - [Frontend](#frontend)
+  - [DevOps](#devops)
+- [🚀 Cómo Ejecutar el Proyecto](#cómo-ejecutar-el-proyecto)
+- [📅 Roadmap](#roadmap)
 
-## Funcionalidades
-**Búsqueda por Proximidad**
+---
 
-- Mapa interactivo que muestra supermercados cercanos a tu ubicación
-- Filtrado por distancia para encontrar las tiendas más convenientes
-- Visualización de múltiples cadenas de supermercados en un solo lugar
+## 🎯 Objetivo y MVP
 
-**Comparación de Precios**
+El objetivo final del proyecto es **democratizar el acceso a información de precios**, permitiendo que las familias optimicen su presupuesto de compra mediante decisiones informadas basadas en **datos reales y actualizados**.
 
-- Base de datos actualizada con precios de productos en diferentes tiendas
-- Identificación rápida de las ofertas más competitivas
-- Alertas de precios especiales y descuentos activos
+Para esta primera versión (**MVP**), el foco está en **implementar y asegurar el correcto funcionamiento de las funcionalidades listadas más abajo**, de manera que se pueda probar la aplicación con un **grupo reducido de usuarios conocidos**.
+Esta fase de pruebas y refinamiento del MVP está planificada hasta aproximadamente **enero**.
 
-**Gestión de Compras**
+> ⚠️ El MVP no contempla todas las características finales, sino que sirve como **base funcional para validar la idea y recoger feedback** antes de avanzar con el desarrollo completo y la integración de todas las funcionalidades.
 
-- Creación de listas de compra personalizadas
-- Cálculo automático del coste total en diferentes supermercados
-- Recomendación de la tienda más económica según tu lista
 
-## Estructura del proyecto actualmente
+## ⚙️ Funcionalidades
+
+### 📍 Búsqueda por Proximidad
+- Mapa interactivo que muestra supermercados cercanos a tu ubicación.
+- Filtrado por distancia para encontrar las tiendas más convenientes.
+- Visualización de múltiples cadenas de supermercados en un solo lugar.
+
+<!-- ![Mapa de ejemplo](ruta/a/tu/imagen-mapa.png) -->
+*Captura de pantalla de la funcionalidad de búsqueda por proximidad.*
+
+---
+
+### 💰 Comparación de Precios
+- Base de datos actualizada con precios de productos en diferentes tiendas.
+- Identificación rápida de las ofertas más competitivas.
+- Alertas de precios especiales y descuentos activos.
+
+---
+
+### 🛒 Gestión de Compras
+- Creación de listas de compra personalizadas.
+- Cálculo automático del coste total en diferentes supermercados.
+- Recomendación de la tienda más económica según tu lista.
+
+<!-- ![Lista de compras](ruta/a/tu/imagen-lista.png) -->
+*Ejemplo de vista de lista de compras en la aplicación.*
+
+
+## 📂 Estructura del proyecto actualmente
 `````
 AVI/
 ├── backend/                           # API REST en Node.js (Express + MySQL)
@@ -125,53 +154,62 @@ AVI/
 `````
 ---
 
-## Tecnologías y herramientas utilizadas
-### **Backend**
-Frameworks, bases de datos, herramientas vinculadas al desarrollo del servidor.
+## 🛠️ Tecnologías y herramientas utilizadas
+
+### 🖥️ Backend
+Frameworks, bases de datos y herramientas vinculadas al desarrollo del servidor.
+
 - **MySQL Server** – Motor de base de datos utilizado en el backend.
 - **MySQL Workbench** – Herramienta visual para administrar la base de datos.
 - **Postman** – Cliente para probar y documentar endpoints del backend.
-- **MapBox** (si el backend gestiona peticiones de mapas/geocodificación).
+- **MapBox** – Si el backend gestiona peticiones de mapas/geocodificación.
 
-Por usar:
-- **APIs externas** – Servicios de terceros que requiere el backend (ej: APIs de tiempo).
-- **Servidor VPS** – Hardware donde se ejecuta el backend.
-- **SSH** – Protocolo para conectarse al servidor y desplegar/administrar el backend.
+💡 **Por usar:**
+- 🌐 **APIs externas** – Servicios de terceros (ej: APIs de tiempo).
+- 🖥️ **Servidor VPS** – Hardware donde se ejecuta el backend.
+- 🔑 **SSH** – Protocolo para conectarse al servidor y desplegar/administrar el backend.
 
-### **Frontend**
-Frameworks, librerías de UI/diseño, herramientas usadas para la parte visual o interacción con usuario.
+---
+
+### 🎨 Frontend
+Frameworks, librerías de UI/diseño y herramientas usadas para la parte visual o interacción con usuario.
+
 - **Figma** – Diseño UI/UX del frontend.
 - **Notion** – Documentación y planificación del desarrollo.
-- **GitHub** (licencias, integración con IDE) – Gestión del código del frontend.
-- **Visual** Studio Code – Editor principal para desarrollo del frontend.
+- **GitHub** – Licencias e integración con IDE, gestión del código.
+- **Visual Studio Code** – Editor principal para desarrollo del frontend.
 
-Por usar:
-- **MapBox** - El frontend muestra mapas con la librería JS.
-- **APIs externas** (si son consumidas directamente desde el frontend).
+💡 **Por usar:**
+- 🗺️ **MapBox** – El frontend muestra mapas con la librería JS.
+- 🌐 **APIs externas** – Si son consumidas directamente desde el frontend.
 
-### **DevOps**
-Infraestructura, despliegue, automatizaciones, contenedores y herramientas transversales.
+---
+
+### ⚙️ DevOps
+Infraestructura, despliegue, automatizaciones y herramientas transversales.
+
 - **GitHub**
   - Control de versiones
   - CI/CD si se usa GitHub Actions
-- **Notion** – Organización del equipo (puede considerarse una herramienta transversal).
+- **Notion** – Organización del equipo (herramienta transversal).
 
-Por usar:
-- **Docker** – Contenedores para backend, base de datos o entorno completo del proyecto.
-- **Servidor VPS** – Entorno de despliegue (también aplica aquí, además de backend).
-- **SSH** – Acceso remoto al VPS (gestionado dentro de prácticas DevOps).
-- **Licencias de IDE** (IntelliJ, etc.) – Herramientas usadas en la cadena de desarrollo.
+💡 **Por usar:**
+- 🐳 **Docker** – Contenedores para backend, base de datos o entorno completo.
+- 🖥️ **Servidor VPS** – Entorno de despliegue (también aplica al backend).
+- 🔑 **SSH** – Acceso remoto al VPS.
+- 🛠️ **Licencias de IDE** – IntelliJ, etc., usadas en la cadena de desarrollo.
 
-## Cómo ejecutar el proyecto
-### 1.Instalación
-(Por detallar: pasos para instalar dependencias y preparar el entorno)
 
-- Clonar el repositorio:
-`````
+## 🚀 CCómo ejecutar el proyecto
+### 1️⃣ Instalación
+*(Pasos para instalar dependencias y preparar el entorno)*
+
+- **Clonar el repositorio:**
+```bash
 git clone <URL-del-repo>
-`````
+```
 
-- Instalar dependencias del backend y frontend:
+- **Instalar dependencias del backend y frontend:**
 `````
 cd backend
 npm install
@@ -180,28 +218,28 @@ npm install
 `````
 - Otros pasos de instalación (creación de bases de datos, permisos, librerías globales, etc.)
 
-### 2. Comandos para levantar el proyecto
-#### Backend
-- Primera vez (para inicializar la base de datos con datos de prueba):
+### 2️⃣ Comandos para levantar el proyecto
+#### 🖥️ Backend
+- **Primera vez** (para inicializar la base de datos con datos de prueba):
 `````
 npm run seed
 `````
 
-- Levantar servidor normalmente:
+- **Levantar servidor normalmente:**
 `````
 npm run dev
 `````
 
-#### Frontend
-- Levantar servidor de desarrollo:
+#### 🎨 Frontend
+- **Levantar servidor de desarrollo:**
 `````
 npm run dev
 `````
 
-### 3. Variables de entorno necesarias
-(Por detallar: agregar las variables que necesita el backend y frontend, por ejemplo: DB_HOST, DB_USER, API_KEY, etc.)
+### 3️⃣ Variables de entorno necesarias
+(Agregar las variables que necesita el backend y frontend)
 
-#### - Backend:
+#### - 🔑 Backend:
 `````
 DB_HOST=
 DB_USER=
@@ -210,54 +248,65 @@ DB_NAME=
 JWT_SECRET=
 PORT=
 `````
-#### - Frontend:
+#### - 🌐 Frontend:
 Posiblemente de a futuro cuando este definido:
 `````
 VITE_API_URL=
 MAPBOX_TOKEN=
 `````
 
-## Roadmap
-  ### – Etapas y sus fases del proyecto:
+## 📅 Roadmap
 
-  #### - **Planteamiento** (acabada)
-  - **Descripción del proyecto:** Qué es la aplicación y para qué sirve.
-    - **Alcance:** Qué funcionalidades sí y cuáles no se incluirán.
-  - **Usuarios objetivo:** Quiénes usarán la app y sus necesidades.
-  - **Roadmap / Cronograma:** Etapas del proyecto y fechas clave.
-  - **Requerimientos:**
-    - Funcionales (qué hace)
-    - No funcionales (rendimiento, seguridad, etc.).
-  - **Recursos necesarios**: Herramientas, licencias, infraestructura.
-  - **Funcionalidades del MVP:** Definir las esenciales para la primera versión.
-  - **Documentación e investigación previa:** Lógica del proceso, info necesaria para el desarrollo.
-Etapa inicial donde se definió qué se va a construir, para quién y con qué alcance. Aquí se establecieron las bases conceptuales del proyecto.
+### 📝 Etapas y fases del proyecto
 
-  #### - **Diseño** (en proceso)
-  - **Diagrama de uso / Flujo de navegación de la Web**
-  - **Wireframes/Previsualización** (Mockups)
-      - Baja fidelidad
-      - Alta fidelidad
-  - **Diseño Visual** (asentar las bases visuales, prototipo)
-  - **UI / UX Guidelines:** Colores, tipografías, botones, estilos. (Bootstrap)
-Construcción de la experiencia visual y funcional del producto. Esta etapa define cómo se usa y cómo se ve la aplicación.
-Actualmente se desarrolla en paralelo con la etapa de desarrollo.
+---
 
-  #### - **Desarrollo** (en proceso)
-  - **Arquitectura del proyecto:** Frontend, backend, base de datos.
-  - **Tecnologías a usar:** Frameworks, librerías, servicios externos.
-  - **Estructura de carpetas y archivos:** Organización del código.
-  - **Integraciones:** APIs o servicios externos.
-  - **Checklist de funcionalidades:** Lista de features a implementar.
-Implementación técnica del sistema: frontend, backend y base de datos.
-Evoluciona en paralelo con el diseño y aún está pendiente de consolidar antes de comenzar el testing.
+#### 1️⃣ Planteamiento (✅ acabada)
+- **Descripción del proyecto:** Qué es la aplicación y para qué sirve.
+  - **Alcance:** Qué funcionalidades sí y cuáles no se incluirán.
+- **Usuarios objetivo:** Quiénes usarán la app y sus necesidades.
+- **Roadmap / Cronograma:** Etapas del proyecto y fechas clave.
+- **Requerimientos:**
+  - Funcionales (qué hace)
+  - No funcionales (rendimiento, seguridad, etc.)
+- **Recursos necesarios:** Herramientas, licencias, infraestructura.
+- **Funcionalidades del MVP:** Definir las esenciales para la primera versión.
+- **Documentación e investigación previa:** Lógica del proceso, información necesaria para el desarrollo.
 
-  #### - **Testing QA** (en prceso)
-  - **Pruebas unitarias:** Validar componentes individuales del sistema (funciones, controladores, servicios).
-  - **Pruebas de integración:** Comprobación del flujo completo entre Frontend → Backend → Base de Datos.
-  - **Pruebas funcionales:** Confirmar que cada funcionalidad cumple su propósito y responde como se espera.
-  - **Pruebas de interfaz / usuario (UI/UX):** Verificar experiencia de usuario, navegación y diseño visual.
-  - **Pruebas de rendimiento:** Medir tiempos de carga, consumo de recursos y estabilidad bajo uso.
-  - **Registro de bugs / incidencias:** Documentación, seguimiento y resolución de errores detectados.
-  - **Corrección de errores y refinamiento final:** Ajustes previos al despliegue.
-La fase de testing ha comenzado, especialmente con las pruebas de integración, verificando que el flujo completo entre frontend, backend y base de datos funciona correctamente. Aún queda completar las demás pruebas y la corrección de errores para cerrar esta etapa.
+> *Etapa inicial donde se definió qué se va a construir, para quién y con qué alcance. Aquí se establecieron las bases conceptuales del proyecto.*
+
+---
+
+#### 2️⃣ Diseño (⚙️ en proceso)
+- **Diagrama de uso / Flujo de navegación de la Web**
+- **Wireframes / Previsualización (Mockups):**
+  - Baja fidelidad
+  - Alta fidelidad
+- **Diseño Visual:** Asentar las bases visuales, prototipo.
+- **UI / UX Guidelines:** Colores, tipografías, botones, estilos (Bootstrap).
+
+> *Construcción de la experiencia visual y funcional del producto. Define cómo se usa y cómo se ve la aplicación. Esta etapa se desarrolla en paralelo con la etapa de desarrollo.*
+
+---
+
+#### 3️⃣ Desarrollo (⚙️ en proceso)
+- **Arquitectura del proyecto:** Frontend, backend, base de datos.
+- **Tecnologías a usar:** Frameworks, librerías, servicios externos.
+- **Estructura de carpetas y archivos:** Organización del código.
+- **Integraciones:** APIs o servicios externos.
+- **Checklist de funcionalidades:** Lista de features a implementar.
+
+> *Implementación técnica del sistema: frontend, backend y base de datos. Evoluciona en paralelo con el diseño y aún está pendiente de consolidar antes de comenzar el testing.*
+
+---
+
+#### 4️⃣ Testing QA (🧪 en proceso)
+- **Pruebas unitarias:** Validar componentes individuales del sistema (funciones, controladores, servicios).
+- **Pruebas de integración:** Comprobación del flujo completo entre Frontend → Backend → Base de Datos.
+- **Pruebas funcionales:** Confirmar que cada funcionalidad cumple su propósito y responde como se espera.
+- **Pruebas de interfaz / usuario (UI/UX):** Verificar experiencia de usuario, navegación y diseño visual.
+- **Pruebas de rendimiento:** Medir tiempos de carga, consumo de recursos y estabilidad bajo uso.
+- **Registro de bugs / incidencias:** Documentación, seguimiento y resolución de errores detectados.
+- **Corrección de errores y refinamiento final:** Ajustes previos al despliegue.
+
+> *La fase de testing ha comenzado, especialmente con las pruebas de integración, verificando que el flujo completo entre frontend, backend y base de datos funciona correctamente. Aún queda completar las demás pruebas y la corrección de errores para cerrar esta etapa.*
