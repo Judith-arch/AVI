@@ -1,121 +1,119 @@
-# Proyecto Web AVI
+# AVI Web Project
 
-*Proyecto que gestiona usuarios, productos, supermercados y listas de la compra.*
-Incluye **backend en Node.js/Express** y **frontend en React**.
+*Project that manages users, products, supermarkets, and shopping lists.*
+Includes **backend in Node.js/Express** and **frontend in React**.
 
 ---
 
-## Tabla de contenidos
+## Table of Contents
 
-- [🎯 Objetivo y MVP](#objetivo-y-mvp)
-- [⚙️ Funcionalidades](#funcionalidades)
-- [📂 Estructura del Proyecto](#estructura-del-proyecto)
-- [🛠️ Tecnologías y Herramientas](#tecnologias-y-herramientas)
-- [🚀 Cómo Ejecutar el Proyecto](#como-ejecutar-el-proyecto)
+- [🎯 Objective and MVP](#objective-and-mvp)
+- [⚙️ Features](#features)
+- [📂 Current project structure](#current-project-structure)
+- [🛠️ Technologies and tools](#technologies-and-tools-used)
+- [🚀 How to run](#how-to-run-the-project)
 - [📅 Roadmap](#roadmap)
 
 ---
 
-## 🎯 Objetivo y MVP
+## Objective and MVP
 
-El objetivo final del proyecto es **democratizar el acceso a información de precios**, permitiendo que las familias optimicen su presupuesto de compra mediante decisiones informadas basadas en **datos reales y actualizados**.
+The ultimate goal of the project is to **democratize access to pricing information**, allowing families to optimize their shopping budget by making informed decisions based on **real, up-to-date data**.
 
-Para esta primera versión (**MVP**), el foco está en **implementar y asegurar el correcto funcionamiento de las funcionalidades listadas más abajo**, de manera que se pueda probar la aplicación con un **grupo reducido de usuarios conocidos**.
-Esta fase de pruebas y refinamiento del MVP está planificada hasta aproximadamente **enero**.
+For this first version (MVP), the focus is on implementing and ensuring the proper functioning of the features listed below, so that the application can be tested with a small group of known users.
+This MVP testing and refinement phase is planned to last until approximately January.
 
-> ⚠️ El MVP no contempla todas las características finales, sino que sirve como **base funcional para validar la idea y recoger feedback** antes de avanzar con el desarrollo completo y la integración de todas las funcionalidades.
+> ⚠️ The MVP does not include all the final features, but serves as a **functional basis for validating the idea and gathering feedback** before moving forward with the full development and integration of all functionalities.
 
+## Features
 
-## ⚙️ Funcionalidades
+### 📍 Proximity Search
+- Interactive map showing supermarkets near your location.
+- Filter by distance to find the most convenient stores.
+- View multiple supermarket chains in one place.
 
-### 📍 Búsqueda por Proximidad
-- Mapa interactivo que muestra supermercados cercanos a tu ubicación.
-- Filtrado por distancia para encontrar las tiendas más convenientes.
-- Visualización de múltiples cadenas de supermercados en un solo lugar.
-
-<!-- ![Mapa de ejemplo](ruta/a/tu/imagen-mapa.png) -->
-*Captura de pantalla de la funcionalidad de búsqueda por proximidad.*
-
----
-
-### 💰 Comparación de Precios
-- Base de datos actualizada con precios de productos en diferentes tiendas.
-- Identificación rápida de las ofertas más competitivas.
-- Alertas de precios especiales y descuentos activos.
+<!-- ![Example map](path/to/your/map-image.png) -->
+*Screenshot of the proximity search feature.*
 
 ---
 
-### 🛒 Gestión de Compras
-- Creación de listas de compra personalizadas.
-- Cálculo automático del coste total en diferentes supermercados.
-- Recomendación de la tienda más económica según tu lista.
+### 💰 Price Comparison
+- Updated database with product prices in different stores.
+- Quick identification of the most competitive offers.
+- Special price alerts and active discounts.
 
-<!-- ![Lista de compras](ruta/a/tu/imagen-lista.png) -->
-*Ejemplo de vista de lista de compras en la aplicación.*
+---
 
+### 🛒 Shopping Management
+- Creation of personalized shopping lists.
+- Automatic calculation of the total cost in different supermarkets.
+- Recommendation of the cheapest store based on your list.
 
-## 📂 Estructura del proyecto actualmente
+<!-- ![Shopping list](path/to/your/image-list.png) -->
+*Example of shopping list view in the app.*
+
+## Current project structure
 `````
 AVI/
-├── backend/                           # API REST en Node.js (Express + MySQL)
-│   ├── config/                        # Configuración central del sistema
-│   │   ├── database.js                # Conexión a la base de datos MySQL
-│   │   └── config.js                  # Carga de variables de entorno (.env)
+├── backend/                           # REST API in Node.js (Express + MySQL)
+│   ├── config/                        # Central system configuration
+│   │   ├── database.js                # MySQL database connection
+│   │   └── config.js                  # Loads environment variables (.env)
 │   │
-│   ├── controllers/                   # Controladores → reciben petición y responden
-│   │   ├── authController.js          # Control de login/registro
-│   │   ├── userController.js          # Gestión del usuario
-│   │   ├── productController.js       # Endpoints de productos
-│   │   └── shoppingListController.js  # Endpoints de listas de compra
+│   ├── controllers/                   # Controllers → receive requests and respond
+│   │   ├── authController.js          # Login/registration control
+│   │   ├── userController.js          # User management
+│   │   ├── productController.js       # Product endpoints
+│   │   └── shoppingListController.js  # Shopping list endpoints
 │   │
-│   ├── db/                            # Recursos y utilidades relacionados con la base de datos
-│   │   ├── index.js                   # Del módulo DB inicializa modelos y exporta conexiones
-│   │   ├── info_scraps_mercadona.csv  # Dataset temporal con datos extraídos (scraping)
-│   │   ├── schema.js                  # Definición del esquema de tablas usando JavaScript
-│   │   ├── schema.sql                 # Script SQL con la creación de tablas y estructura completa
-│   │   └── seed.js                    # Script para poblar la base de datos con datos
+│   ├── db/                            # Database-related resources and utilities
+│   │   ├── index.js                   # Initializes models and exports connections
+│   │   ├── info_scraps_mercadona.csv  # Temporary dataset with scraped data
+│   │   ├── schema.js                  # Table schema definition using JavaScript
+│   │   ├── schema.sql                 # SQL script to create tables and full structure
+│   │   └── seed.js                    # Script to populate the database with data
 │   │
-│   ├── middlewares/                   # Funciones que interceptan las peticiones
-│   │   ├── authMiddleware.js          # Verificación JWT (protege rutas)
-│   │   └── errorHandler.js            # Manejo global de errores
+│   ├── middlewares/                   # Functions that intercept requests
+│   │   ├── authMiddleware.js          # JWT verification (protects routes)
+│   │   └── errorHandler.js            # Global error handling
 │   │
-│   ├── models/                        # Modelos → interacción directa con BD
-│   │   ├── userModel.js               # Modelo de usuarios
-│   │   ├── productModel.js            # Modelo de productos
-│   │   ├── categoryModel.js           # Modelo de categorías
-│   │   └── shoppingListModel.js       # Modelo de listas de compra
+│   ├── models/                        # Models → direct database interaction
+│   │   ├── userModel.js               # User model
+│   │   ├── productModel.js            # Product model
+│   │   ├── categoryModel.js           # Category model
+│   │   └── shoppingListModel.js       # Shopping list model
 │   │
-│   ├── routes/                        # Definición de endpoints
-│   │   ├── authRoutes.js              # Rutas de autenticación (/api/auth)
-│   │   ├── userRoutes.js              # Rutas de usuario (/api/users)
-│   │   ├── productRoutes.js           # Rutas de productos (/api/products)
-│   │   └── shoppingListRoutes.js      # Rutas listas de compra (/api/shopping-lists)
+│   ├── routes/                        # Endpoint definitions
+│   │   ├── authRoutes.js              # Authentication routes (/api/auth)
+│   │   ├── userRoutes.js              # User routes (/api/users)
+│   │   ├── productRoutes.js           # Product routes (/api/products)
+│   │   └── shoppingListRoutes.js      # Shopping list routes (/api/shopping-lists)
 │   │
-│   ├── services/                      # Lógica de negocios (capa entre controller y modelo)
-│   │   ├── authService.js             # Lógica de autenticación
-│   │   ├── userService.js             # Lógica del usuario
-│   │   ├── productService.js          # Lógica de productos
-│   │   └── shoppingListService.js     # Lógica listas de compra
+│   ├── services/                      # Business logic (layer between controller and model)
+│   │   ├── authService.js             # Authentication logic
+│   │   ├── userService.js             # User logic
+│   │   ├── productService.js          # Product logic
+│   │   └── shoppingListService.js     # Shopping list logic
 │   │
-│   ├── utils/                         # Utilidades y herramientas auxiliares
-│   │   ├── helpers.js                 # Funciones genéricas reutilizables
-│   │   └── tokenService.js            # Gestión y creación de JWT
+│   ├── utils/                         # Utilities and helper tools
+│   │   ├── helpers.js                 # Reusable generic functions
+│   │   └── tokenService.js            # JWT management and creation
 │   │
-│   ├── server.js                      # Punto de entrada del backend (Express)
-│   ├── .env                           # Variables de entorno (DB, TOKEN_SECRET, etc.)
-│   └── package.json                   # Dependencias del backend
+│   ├── server.js                      # Backend entry point (Express)
+│   ├── .env                           # Environment variables (DB, TOKEN_SECRET, etc.)
+│   └── package.json                   # Backend dependencies
 │
-└── frontend/                          # Aplicación cliente (React)
-    ├── public/                        # Archivos estáticos públicos
+└── frontend/                          # Client application (React)
+    ├── public/                        # Public static files
     │
     ├── src/
     │   ├── api/
-    │   │   └── api.js                 # Config de Axios (baseURL, interceptores…)
+    │   │   └── api.js                 # Axios configuration (baseURL, interceptors…)
     │   │
-    │   ├── assets/                    # Imágenes y recursos estáticos
-    │   │   └── *.svg                  # Actualmente solo un SVG
+    │   ├── assets/                    # Images and static resources
+    │   │   └── *.svg                  # Currently only one SVG
     │   │
-    │   ├── components/                # Componentes reutilizables
+    │   ├── components/                # Reusable components
     │   │   ├── FiltersPanel/
     │   │   │   ├── FiltersPanel.css
     │   │   │   └── FiltersPanel.jsx
@@ -131,110 +129,110 @@ AVI/
     │   │   ├── Head.css
     │   │   └── Head.jsx
     │   │
-    │   ├── pages/                     # Vistas principales
-    │   │   ├── Inicio.jsx             # Página de inicio
+    │   ├── pages/                     # Main views
+    │   │   ├── Inicio.jsx             # Home page
     │   │   ├── Inicio.css
-    │   │   ├── Productos.jsx          # Vista de productos + lista de compra
+    │   │   ├── Productos.jsx          # Products + shopping list view
     │   │   ├── Productos.css
-    │   │   ├── Register.jsx           # Registro / Login
+    │   │   ├── Register.jsx           # Registration / Login
     │   │   ├── Register.css
-    │   │   └── Map/                   # Vista de mapa
+    │   │   └── Map/                   # Map view
     │   │       ├── Map.jsx
     │   │       └── Map.css
     │   │
-    │   ├── App.jsx                    # Componente raíz
+    │   ├── App.jsx                    # Root component
     │   ├── App.css
-    │   ├── main.js                    # Punto de arranque de React
-    │   └── index.js                   # Renderizado al DOM
+    │   ├── main.js                    # React entry point
+    │   └── index.js                   # Render to DOM
     │
-    └── package.json                   # Dependencias del frontend
+    └── package.json                   # Frontend dependencies
+
 `````
 ---
 
-## 🛠️ Tecnologías y herramientas utilizadas
+## Technologies and tools used
 
 ### 🖥️ Backend
-Frameworks, bases de datos y herramientas vinculadas al desarrollo del servidor.
+Frameworks, databases, and tools related to server development.
 
-- **MySQL Server** – Motor de base de datos utilizado en el backend.
-- **MySQL Workbench** – Herramienta visual para administrar la base de datos.
-- **Postman** – Cliente para probar y documentar endpoints del backend.
-- **MapBox** – Si el backend gestiona peticiones de mapas/geocodificación.
+- **MySQL Server** – Database engine used in the backend.
+- **MySQL Workbench** – Visual tool for managing the database.
+- **Postman** – Client for testing and documenting backend endpoints.
+- **MapBox** – If the backend manages map/geocoding requests.
 
-💡 **Por usar:**
-- 🌐 **APIs externas** – Servicios de terceros (ej: APIs de tiempo).
-- 🖥️ **Servidor VPS** – Hardware donde se ejecuta el backend.
-- 🔑 **SSH** – Protocolo para conectarse al servidor y desplegar/administrar el backend.
+💡 **To be used:**
+- 🌐 **External APIs** – Third-party services (e.g., weather APIs).
+- 🖥️ **VPS server** – Hardware where the backend runs.
+- 🔑 **SSH** – Protocol for connecting to the server and deploying/managing the backend.
 
 ---
 
 ### 🎨 Frontend
-Frameworks, librerías de UI/diseño y herramientas usadas para la parte visual o interacción con usuario.
+Frameworks, UI/design libraries, and tools used for the visual part or user interaction.
 
-- **Figma** – Diseño UI/UX del frontend.
-- **Notion** – Documentación y planificación del desarrollo.
-- **GitHub** – Licencias e integración con IDE, gestión del código.
-- **Visual Studio Code** – Editor principal para desarrollo del frontend.
+- **Figma** – Frontend UI/UX design.
+- **Notion** – Documentation and development planning.
+- **GitHub** – Licensing and IDE integration, code management.
+- **Visual Studio Code** – Main editor for frontend development.
 
-💡 **Por usar:**
-- 🗺️ **MapBox** – El frontend muestra mapas con la librería JS.
-- 🌐 **APIs externas** – Si son consumidas directamente desde el frontend.
+💡 **To be used:**
+- 🗺️ **MapBox** – The frontend displays maps with the JS library.
+- 🌐 **External APIs** – If consumed directly from the frontend.
 
 ---
 
 ### ⚙️ DevOps
-Infraestructura, despliegue, automatizaciones y herramientas transversales.
+Infrastructure, deployment, automation, and cross-functional tools.
 
 - **GitHub**
-  - Control de versiones
-  - CI/CD si se usa GitHub Actions
-- **Notion** – Organización del equipo (herramienta transversal).
+  - Version control
+  - CI/CD if GitHub Actions is used
+- **Notion** – Team organization (cross-functional tool).
 
-💡 **Por usar:**
-- 🐳 **Docker** – Contenedores para backend, base de datos o entorno completo.
-- 🖥️ **Servidor VPS** – Entorno de despliegue (también aplica al backend).
-- 🔑 **SSH** – Acceso remoto al VPS.
-- 🛠️ **Licencias de IDE** – IntelliJ, etc., usadas en la cadena de desarrollo.
+💡 **To be used:**
+- 🐳 **Docker** – Containers for backend, database, or complete environment.
+- 🖥️ **VPS server** – Deployment environment (also applies to backend).
+- 🔑 **SSH** – Remote access to VPS.
+- 🛠️ **IDE licenses** – IntelliJ, etc., used in the development chain.
 
+## How to run the project
+### 1️⃣ Installation
+*(Steps to install dependencies and prepare the environment)*
 
-## 🚀 CCómo ejecutar el proyecto
-### 1️⃣ Instalación
-*(Pasos para instalar dependencias y preparar el entorno)*
-
-- **Clonar el repositorio:**
+- **Clone the repository:**
 ```bash
 git clone <URL-del-repo>
 ```
 
-- **Instalar dependencias del backend y frontend:**
+- **Install backend and frontend dependencies:**
 `````
 cd backend
 npm install
 cd ../frontend
 npm install
 `````
-- Otros pasos de instalación (creación de bases de datos, permisos, librerías globales, etc.)
+- Other installation steps (creating databases, permissions, global libraries, etc.)
 
-### 2️⃣ Comandos para levantar el proyecto
+### 2️⃣ Commands to launch the project
 #### 🖥️ Backend
-- **Primera vez** (para inicializar la base de datos con datos de prueba):
+- **First time** (to initialize the database with test data):
 `````
 npm run seed
 `````
 
-- **Levantar servidor normalmente:**
+- **Launch server normally:**
 `````
 npm run dev
 `````
 
 #### 🎨 Frontend
-- **Levantar servidor de desarrollo:**
+- **Launch development server:**
 `````
 npm run dev
 `````
 
-### 3️⃣ Variables de entorno necesarias
-(Agregar las variables que necesita el backend y frontend)
+### 3️⃣ Required environment variables
+(Add the variables needed by the backend and frontend)
 
 #### - 🔑 Backend:
 `````
@@ -246,64 +244,65 @@ JWT_SECRET=
 PORT=
 `````
 #### - 🌐 Frontend:
-Posiblemente de a futuro cuando este definido:
+Possibly in the future when defined:
 `````
 VITE_API_URL=
 MAPBOX_TOKEN=
 `````
 
-## 📅 Roadmap
+## Roadmap
 
-### 📝 Etapas y fases del proyecto
-
----
-
-#### 1️⃣ Planteamiento (✅ acabada)
-- **Descripción del proyecto:** Qué es la aplicación y para qué sirve.
-  - **Alcance:** Qué funcionalidades sí y cuáles no se incluirán.
-- **Usuarios objetivo:** Quiénes usarán la app y sus necesidades.
-- **Roadmap / Cronograma:** Etapas del proyecto y fechas clave.
-- **Requerimientos:**
-  - Funcionales (qué hace)
-  - No funcionales (rendimiento, seguridad, etc.)
-- **Recursos necesarios:** Herramientas, licencias, infraestructura.
-- **Funcionalidades del MVP:** Definir las esenciales para la primera versión.
-- **Documentación e investigación previa:** Lógica del proceso, información necesaria para el desarrollo.
-
-> *Etapa inicial donde se definió qué se va a construir, para quién y con qué alcance. Aquí se establecieron las bases conceptuales del proyecto.*
+### 📝 Project stages and phases
 
 ---
 
-#### 2️⃣ Diseño (⚙️ en proceso)
-- **Diagrama de uso / Flujo de navegación de la Web**
-- **Wireframes / Previsualización (Mockups):**
-  - Baja fidelidad
-  - Alta fidelidad
-- **Diseño Visual:** Asentar las bases visuales, prototipo.
-- **UI / UX Guidelines:** Colores, tipografías, botones, estilos (Bootstrap).
+#### 1️⃣ Approach (✅ completed)
+- **Project description:** What the application is and what it is used for.
+  - **Scope:** Which features will and will not be included.
+- **Target users:** Who will use the app and what are their needs?
+- **Roadmap/Schedule:** Project stages and key dates.
+- **Requirements:**
+  - Functional (what it does)
+  - Non-functional (performance, security, etc.)
+- **Required resources:** Tools, licenses, infrastructure.
+- **MVP features:** Define the essential features for the first version.
+- **Documentation and preliminary research:** Process logic, information needed for development.
 
-> *Construcción de la experiencia visual y funcional del producto. Define cómo se usa y cómo se ve la aplicación. Esta etapa se desarrolla en paralelo con la etapa de desarrollo.*
-
----
-
-#### 3️⃣ Desarrollo (⚙️ en proceso)
-- **Arquitectura del proyecto:** Frontend, backend, base de datos.
-- **Tecnologías a usar:** Frameworks, librerías, servicios externos.
-- **Estructura de carpetas y archivos:** Organización del código.
-- **Integraciones:** APIs o servicios externos.
-- **Checklist de funcionalidades:** Lista de features a implementar.
-
-> *Implementación técnica del sistema: frontend, backend y base de datos. Evoluciona en paralelo con el diseño y aún está pendiente de consolidar antes de comenzar el testing.*
+> *Initial stage where we defined what we were going to build, for whom, and with what scope. This is where we laid the conceptual foundations for the project.*
 
 ---
 
-#### 4️⃣ Testing QA (🧪 en proceso)
-- **Pruebas unitarias:** Validar componentes individuales del sistema (funciones, controladores, servicios).
-- **Pruebas de integración:** Comprobación del flujo completo entre Frontend → Backend → Base de Datos.
-- **Pruebas funcionales:** Confirmar que cada funcionalidad cumple su propósito y responde como se espera.
-- **Pruebas de interfaz / usuario (UI/UX):** Verificar experiencia de usuario, navegación y diseño visual.
-- **Pruebas de rendimiento:** Medir tiempos de carga, consumo de recursos y estabilidad bajo uso.
-- **Registro de bugs / incidencias:** Documentación, seguimiento y resolución de errores detectados.
-- **Corrección de errores y refinamiento final:** Ajustes previos al despliegue.
+#### 2️⃣ Design (⚙️ in progress)
+- **Usage diagram / Website navigation flow**
+- **Wireframes / Preview (Mockups):**
+  - Low fidelity
+  - High fidelity
+- **Visual Design:** Laying the visual foundations, prototype.
+- **UI/UX Guidelines:** Colors, fonts, buttons, styles (Bootstrap).
 
-> *La fase de testing ha comenzado, especialmente con las pruebas de integración, verificando que el flujo completo entre frontend, backend y base de datos funciona correctamente. Aún queda completar las demás pruebas y la corrección de errores para cerrar esta etapa.*
+> *Building the visual and functional experience of the product. Defines how the application is used and how it looks. This stage is developed in parallel with the development stage.*
+
+---
+
+#### 3️⃣ Development (⚙️ in progress)
+- **Project architecture:** Frontend, backend, database.
+- **Technologies to be used:** Frameworks, libraries, external services.
+- **Folder and file structure:** Code organization.
+- **Integrations:** APIs or external services.
+- **Functionality checklist:** List of features to be implemented.
+
+> *Technical implementation of the system: frontend, backend, and database. This evolves in parallel with the design and still needs to be consolidated before testing can begin.*
+
+---
+
+#### 4️⃣ QA testing (🧪 in progress)
+- **Unit tests:** Validate individual components of the system (functions, controllers, services).
+- **Integration tests:** Check the entire flow between Frontend → Backend → Database.
+- **Functional testing:** Confirm that each feature fulfills its purpose and responds as expected.
+- **Interface/user testing (UI/UX):** Verify user experience, navigation, and visual design.
+- **Performance testing:** Measure load times, resource consumption, and stability under use.
+- **Bug/incident logging:** Documentation, tracking, and resolution of detected errors.
+- **Bug fixing and final refinement:** Pre-deployment adjustments.
+
+> *The testing phase has begun, particularly with integration testing, verifying that the entire flow between the frontend, backend, and database is functioning correctly. The remaining tests and bug fixes still need to be completed to close this stage.*
+
