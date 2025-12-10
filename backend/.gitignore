@@ -1,0 +1,29 @@
+# Dependencias
+node_modules/
+
+# archivos de entorno
+.env
+.env.*    # por si tienes .env.local, .env.dev, etc.
+
+# Logs
+logs/
+*.log
+
+# Directorio de compilación (si existe)
+dist/
+build/
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Base de datos temporal / datasets
+db/*.csv
+
+# Editor
+.vscode/
+.idea/
