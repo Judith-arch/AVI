@@ -2,8 +2,12 @@
 
 Proyecto que gestiona usuarios, productos, supermercados y listas de la compra. Incluye backend en Node.js/Express y frontend en React.
 
-## Objetivo
-Democratizar el acceso a información de precios, permitiendo a las familias optimizar su presupuesto de compra mediante decisiones informadas basadas en datos reales y actualizados.
+## Objetivo y MVP
+El objetivo final del proyecto es democratizar el acceso a información de precios, permitiendo que las familias optimicen su presupuesto de compra mediante decisiones informadas basadas en datos reales y actualizados.
+
+Para esta primera versión (MVP), el foco está en implementar y asegurar el correcto funcionamiento de las funcionalidades listadas más abajo, de manera que se pueda probar la aplicación con un grupo reducido de usuarios conocidos. Esta fase de pruebas y refinamiento del MVP está planificada hasta aproximadamente enero.
+
+El MVP no contempla todas las características finales, sino que sirve como base funcional para validar la idea y recoger feedback antes de avanzar con el desarrollo completo y la integración de todas las funcionalidades.
 
 ## Funcionalidades
 **Búsqueda por Proximidad**
@@ -216,44 +220,44 @@ MAPBOX_TOKEN=
 ## Roadmap
   ### – Etapas y sus fases del proyecto:
 
-    #### - **Planteamiento** (acabada)
-      - **Descripción del proyecto:** Qué es la aplicación y para qué sirve.
-        - **Alcance:** Qué funcionalidades sí y cuáles no se incluirán.
-      - **Usuarios objetivo:** Quiénes usarán la app y sus necesidades.
-      - **Roadmap / Cronograma:** Etapas del proyecto y fechas clave.
-      - **Requerimientos:**
-        - Funcionales (qué hace)
-        - No funcionales (rendimiento, seguridad, etc.).
-      - **Recursos necesarios**: Herramientas, licencias, infraestructura.
-      - **Funcionalidades del MVP:** Definir las esenciales para la primera versión.
-      - **Documentación e investigación previa:** Lógica del proceso, info necesaria para el desarrollo.
-    Etapa inicial donde se definió qué se va a construir, para quién y con qué alcance. Aquí se establecieron las bases conceptuales del proyecto.
+  #### - **Planteamiento** (acabada)
+  - **Descripción del proyecto:** Qué es la aplicación y para qué sirve.
+    - **Alcance:** Qué funcionalidades sí y cuáles no se incluirán.
+  - **Usuarios objetivo:** Quiénes usarán la app y sus necesidades.
+  - **Roadmap / Cronograma:** Etapas del proyecto y fechas clave.
+  - **Requerimientos:**
+    - Funcionales (qué hace)
+    - No funcionales (rendimiento, seguridad, etc.).
+  - **Recursos necesarios**: Herramientas, licencias, infraestructura.
+  - **Funcionalidades del MVP:** Definir las esenciales para la primera versión.
+  - **Documentación e investigación previa:** Lógica del proceso, info necesaria para el desarrollo.
+Etapa inicial donde se definió qué se va a construir, para quién y con qué alcance. Aquí se establecieron las bases conceptuales del proyecto.
 
-    #### - **Diseño** (en proceso)
-      - **Diagrama de uso / Flujo de navegación de la Web**
-      - **Wireframes/Previsualización** (Mockups)
-          - Baja fidelidad
-          - Alta fidelidad
-      - **Diseño Visual** (asentar las bases visuales, prototipo)
-      - **UI / UX Guidelines:** Colores, tipografías, botones, estilos. (Bootstrap)
-    Construcción de la experiencia visual y funcional del producto. Esta etapa define cómo se usa y cómo se ve la aplicación.
-  Actualmente se desarrolla en paralelo con la etapa de desarrollo.
+  #### - **Diseño** (en proceso)
+  - **Diagrama de uso / Flujo de navegación de la Web**
+  - **Wireframes/Previsualización** (Mockups)
+      - Baja fidelidad
+      - Alta fidelidad
+  - **Diseño Visual** (asentar las bases visuales, prototipo)
+  - **UI / UX Guidelines:** Colores, tipografías, botones, estilos. (Bootstrap)
+Construcción de la experiencia visual y funcional del producto. Esta etapa define cómo se usa y cómo se ve la aplicación.
+Actualmente se desarrolla en paralelo con la etapa de desarrollo.
 
-    #### - **Desarrollo** (en proceso)
-      - **Arquitectura del proyecto:** Frontend, backend, base de datos.
-      - **Tecnologías a usar:** Frameworks, librerías, servicios externos.
-      - **Estructura de carpetas y archivos:** Organización del código.
-      - **Integraciones:** APIs o servicios externos.
-      - **Checklist de funcionalidades:** Lista de features a implementar.
-    Implementación técnica del sistema: frontend, backend y base de datos.
-  Evoluciona en paralelo con el diseño y aún está pendiente de consolidar antes de comenzar el testing.
+  #### - **Desarrollo** (en proceso)
+  - **Arquitectura del proyecto:** Frontend, backend, base de datos.
+  - **Tecnologías a usar:** Frameworks, librerías, servicios externos.
+  - **Estructura de carpetas y archivos:** Organización del código.
+  - **Integraciones:** APIs o servicios externos.
+  - **Checklist de funcionalidades:** Lista de features a implementar.
+Implementación técnica del sistema: frontend, backend y base de datos.
+Evoluciona en paralelo con el diseño y aún está pendiente de consolidar antes de comenzar el testing.
 
-    #### - **Testing QA** (en prceso)
-      - **Pruebas unitarias:** Validar componentes individuales del sistema (funciones, controladores, servicios).
-      - **Pruebas de integración:** Comprobación del flujo completo entre Frontend → Backend → Base de Datos.
-      - **Pruebas funcionales:** Confirmar que cada funcionalidad cumple su propósito y responde como se espera.
-      - **Pruebas de interfaz / usuario (UI/UX):** Verificar experiencia de usuario, navegación y diseño visual.
-      - **Pruebas de rendimiento:** Medir tiempos de carga, consumo de recursos y estabilidad bajo uso.
-      - **Registro de bugs / incidencias:** Documentación, seguimiento y resolución de errores detectados.
-      - **Corrección de errores y refinamiento final:** Ajustes previos al despliegue.
-  La fase de testing ha comenzado, especialmente con las pruebas de integración, verificando que el flujo completo entre frontend, backend y base de datos funciona correctamente. Aún queda completar las demás pruebas y la corrección de errores para cerrar esta etapa.
+  #### - **Testing QA** (en prceso)
+  - **Pruebas unitarias:** Validar componentes individuales del sistema (funciones, controladores, servicios).
+  - **Pruebas de integración:** Comprobación del flujo completo entre Frontend → Backend → Base de Datos.
+  - **Pruebas funcionales:** Confirmar que cada funcionalidad cumple su propósito y responde como se espera.
+  - **Pruebas de interfaz / usuario (UI/UX):** Verificar experiencia de usuario, navegación y diseño visual.
+  - **Pruebas de rendimiento:** Medir tiempos de carga, consumo de recursos y estabilidad bajo uso.
+  - **Registro de bugs / incidencias:** Documentación, seguimiento y resolución de errores detectados.
+  - **Corrección de errores y refinamiento final:** Ajustes previos al despliegue.
+La fase de testing ha comenzado, especialmente con las pruebas de integración, verificando que el flujo completo entre frontend, backend y base de datos funciona correctamente. Aún queda completar las demás pruebas y la corrección de errores para cerrar esta etapa.
