@@ -79,6 +79,14 @@
   padding: 3px 8px;
   font-size: 12px;
   border-radius: 6px;
+  background-color: #8ab7f9;
+  line-height: 1.25;
+  cursor: pointer;
+  box-shadow: #666 0px 1px 1px; 
+}
+
+.store-button-inline:hover {
+  background-color: #fff;
 }
 
 .store-details {

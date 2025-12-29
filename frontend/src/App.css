@@ -9,7 +9,7 @@
 /* Color de fondo general */
 body {
   margin: 0;
-  background-color: #f5f5f5;
+  background-color: #ffe3a1;
 }
 
 /* === TIPOGRAFÍA GLOBAL === */
@@ -38,4 +38,24 @@ a {
 /* Botones globales */
 button {
   cursor: pointer;
+}
+
+/* =========================
+   SCROLLBAR GLOBAL OCULTO
+   ========================= */
+
+/* Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Chrome, Edge, Safari */
+body::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Mantener scroll activo */
+body {
+  overflow-y: scroll;
 }

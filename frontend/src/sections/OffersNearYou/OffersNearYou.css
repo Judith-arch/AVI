@@ -6,6 +6,10 @@
   padding: 20px 0;
 }
 
+.offers-buttons {
+  display: none;
+}
+
 /* TRACK QUE SE MUEVE */
 .offers-track {
   display: flex;

@@ -1,30 +1,76 @@
-.products-banner {
+.banner-carousel {
+  position: relative;
   width: 100%;
-  height: 180px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #f1f5ff;
-  margin-bottom: 30px;
-  display: flex;
-  animation: slide 12s infinite linear;
-}
-
-.banner-slide {
-  min-width: 100%;
+  height: 160px;
+  background: linear-gradient(135deg, #d9e8ff, #f1f5ff);
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 25px 0;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+/* Texto del banner */
+.banner-slide {
   font-size: 22px;
   font-weight: 700;
   color: #333;
+  opacity: 0;
+  animation: fade-in 0.6s forwards;
 }
 
-/* Carrusel automático simple */
-@keyframes slide {
-  0% { transform: translateX(0); }
-  33% { transform: translateX(0); }
-  40% { transform: translateX(-100%); }
-  73% { transform: translateX(-100%); }
-  80% { transform: translateX(-200%); }
-  100% { transform: translateX(-200%); }
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botón de cerrar */
+.banner-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: #ff4b4b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.25s;
+}
+
+.banner-close:hover {
+  background: #d93636;
+  transform: scale(1.15);
+}
+
+/* Flechas del carrusel */
+.banner-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.15);
+  color: black;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.banner-arrow:hover {
+  background: rgba(0,0,0,0.25);
+}
+
+.banner-arrow.left {
+  left: 12px;
+}
+
+
+.banner-arrow.right {
+  right: 12px;
 }
