@@ -1,5 +1,7 @@
 import { db } from "./index.js";
 import bcrypt from "bcryptjs";
+import fs from "fs/promises";
+import path from "path";
 
 export async function seedDatabase() {
     try {
@@ -26,14 +28,15 @@ export async function seedDatabase() {
         // 2. Categorías
         await db.query(`
             INSERT INTO categories (name, descripcion, icono) VALUES
-            ('Frutas y Verduras', 'Productos frescos', '🍎'),
-            ('Carnes y Pescados', 'Proteínas', '🥩'),
-            ('Lácteos', 'Leche, yogures, quesos', '🥛'),
-            ('Panadería', 'Pan y bollería', '🍞'),
-            ('Bebidas', 'Refrescos, agua, zumos', '🥤'),
-            ('Congelados', 'Productos congelados', '🧊'),
-            ('Limpieza', 'Productos de limpieza', '🧹'),
-            ('Higiene Personal', 'Cuidado personal', '🧴')
+            ('Lácteos', 'Leche, quesos y derivados', '🥛'),
+            ('Limpieza y hogar', 'Productos para el hogar', '🧹'),
+            ('Maquillaje', 'Productos de cosmética', '💄'),
+            ('Marisco y pescado', 'Pescados y mariscos frescos', '🐟'),
+            ('Mascotas', 'Productos para animales', '🐾'),
+            ('Panadería y pastelería', 'Panes, bollería y repostería', '🍞'),
+            ('Pizzas y platos preparados', 'Comida lista para calentar o servir', '🍕'),
+            ('Postres y yogures', 'Postres fríos y yogures', '🍮'),
+            ('Zumos', 'Zumos y bebidas naturales', '🧃')
         `);
         console.log("✅ Categorías insertadas");
 
@@ -47,29 +50,8 @@ export async function seedDatabase() {
         `);
         console.log("✅ Supermercados insertados");
 
-        // 4. Productos
-        await db.query(`
-            INSERT INTO products (name, descripcion, price, unidad_medida, category_id, supermarket_id) VALUES
-            ('Manzanas Golden', 'Manzanas frescas origen España', 2.50, 'kg', 1, 1),
-            ('Plátanos', 'Plátanos de Canarias', 1.80, 'kg', 1, 1),
-            ('Tomates', 'Tomates maduros', 3.20, 'kg', 1, 2),
-            ('Lechuga Iceberg', 'Lechuga fresca', 1.50, 'unidad', 1, 2),
-            ('Pechuga de Pollo', 'Pechuga de pollo fresca', 5.90, 'kg', 2, 1),
-            ('Salmón Fresco', 'Salmón noruego', 12.50, 'kg', 2, 2),
-            ('Leche Entera 1L', 'Leche entera', 0.95, 'litro', 3, 1),
-            ('Yogur Natural Pack 4', 'Yogures naturales', 2.30, 'pack', 3, 2),
-            ('Pan de Molde', 'Pan de molde integral', 1.20, 'paquete', 4, 1),
-            ('Croissants Pack 6', 'Croissants de mantequilla', 2.80, 'pack', 4, 2),
-            ('Agua Mineral 1.5L', 'Agua mineral natural', 0.40, 'botella', 5, 1),
-            ('Coca Cola 2L', 'Refresco de cola', 1.85, 'botella', 5, 3),
-            ('Pizza 4 Quesos', 'Pizza congelada', 3.50, 'unidad', 6, 2),
-            ('Helado Vainilla 1L', 'Helado de vainilla', 4.20, 'tarrina', 6, 3),
-            ('Detergente Líquido', 'Detergente para ropa', 6.50, 'botella', 7, 1),
-            ('Lavavajillas', 'Líquido lavavajillas', 3.90, 'botella', 7, 4),
-            ('Champú Suave', 'Champú para cabello', 4.50, 'bote', 8, 2),
-            ('Gel de Baño', 'Gel de ducha', 3.20, 'bote', 8, 4)
-        `);
-        console.log("✅ Productos insertados");
+        // 4. Productos desde archivo JSON
+        await importProductsFromJSON();
 
         console.log("✅ Seed completado exitosamente");
         console.log("\n📧 Credenciales de prueba:");
@@ -80,4 +62,96 @@ export async function seedDatabase() {
         console.error("❌ Error durante el seed:", err);
         throw err;
     }
+}
+
+async function importProductsFromJSON() {
+    try {
+        // Lee el archivo JSON
+        const jsonPath = path.join(process.cwd(), 'db', 'data', 'products_mercadona.json');
+        const jsonData = await fs.readFile(jsonPath, 'utf-8');
+        const products = JSON.parse(jsonData);
+
+        console.log(`📦 Importando ${products.length} productos desde JSON...`);
+
+        // Filtrar productos con datos válidos
+        const validProducts = products.filter(product => {
+            const isValid = product.name &&
+                            product.price &&
+                            product.category_id !== '' &&
+                            product.category_id !== null &&
+                            product.supermarket_id !== '' &&
+                            product.supermarket_id !== null;
+            
+            if (!isValid) {
+                console.log(`   ⚠️  Producto omitido (datos incompletos): ${product.name || 'Sin nombre'}`);
+            }
+            return isValid;
+        });
+
+        console.log(`📦 ${validProducts.length} productos válidos de ${products.length} totales`);
+
+        // Insertar productos en lotes para mejor rendimiento
+        const batchSize = 50;
+        let insertedCount = 0;
+
+        for (let i = 0; i < validProducts.length; i += batchSize) {
+            const batch = validProducts.slice(i, i + batchSize);
+            
+            // Construir query con placeholders
+            const values = [];
+            const placeholders = batch.map(product => {
+                values.push(
+                    product.name,
+                    product.descripcion || null,
+                    product.price,
+                    product.unidad_media || 'unidad',
+                    parseInt(product.category_id) || 1,
+                    parseInt(product.supermarket_id) || 1,
+                    product.image_url || null
+                );
+                return '(?, ?, ?, ?, ?, ?, ?)';
+            }).join(', ');
+
+            const query = `
+                INSERT INTO products (name, descripcion, price, unidad_medida, category_id, supermarket_id, image_url)
+                VALUES ${placeholders}
+            `;
+
+            await db.query(query, values);
+            insertedCount += batch.length;
+            
+            console.log(`   ⏳ Insertados ${insertedCount}/${validProducts.length} productos...`);
+        }
+
+        console.log(`✅ ${insertedCount} productos importados correctamente`);
+        
+        const skippedCount = products.length - validProducts.length;
+        if (skippedCount > 0) {
+            console.log(`⚠️  ${skippedCount} productos omitidos por datos incompletos`);
+        }
+
+    } catch (err) {
+        if (err.code === 'ENOENT') {
+            console.log('⚠️  Archivo products_mercadona.json no encontrado. Usando productos por defecto...');
+            await insertDefaultProducts();
+        } else {
+            throw err;
+        }
+    }
+}
+
+async function insertDefaultProducts() {
+    // Productos por defecto en caso de que no exista el archivo JSON
+    await db.query(`
+        INSERT INTO products (name, descripcion, price, unidad_medida, category_id, supermarket_id, image_url) VALUES
+        ('Manzanas Golden', 'Manzanas frescas origen España', 2.50, 'kg', 1, 1, NULL),
+        ('Plátanos', 'Plátanos de Canarias', 1.80, 'kg', 1, 1, NULL),
+        ('Tomates', 'Tomates maduros', 3.20, 'kg', 1, 2, NULL),
+        ('Lechuga Iceberg', 'Lechuga fresca', 1.50, 'unidad', 1, 2, NULL),
+        ('Pechuga de Pollo', 'Pechuga de pollo fresca', 5.90, 'kg', 2, 1, NULL),
+        ('Salmón Fresco', 'Salmón noruego', 12.50, 'kg', 2, 2, NULL),
+        ('Leche Entera 1L', 'Leche entera', 0.95, 'litro', 3, 1, NULL),
+        ('Yogur Natural Pack 4', 'Yogures naturales', 2.30, 'pack', 3, 2, NULL)
+    `);
+    console.log("✅ Productos por defecto insertados");
 }
